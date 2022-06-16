@@ -103,6 +103,8 @@ public class FrmLogin extends JDialog implements ActionListener {
 			txtLogin.requestFocus();
 		}
 
+		
+		
 	}
 
 	public void windowDeactivated(WindowEvent e) {

@@ -338,5 +338,6 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 
 		int posX = (int) (pantalla.getWidth() - ventana.getWidth()) / 2;
 		frm.setLocation(posX, 40);
+		
 	}
 }

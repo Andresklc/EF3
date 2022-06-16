@@ -45,6 +45,5 @@ public class MySqlDBConexion {
 			return salida;	
 		}
 	
-	
 
 }

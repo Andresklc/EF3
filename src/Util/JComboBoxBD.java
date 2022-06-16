@@ -75,4 +75,5 @@ public class JComboBoxBD extends JComboBox<String> {
 	public void setSql(String sql) {
 		this.sql = sql;
 	}
+	
 }

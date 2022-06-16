@@ -219,6 +219,7 @@ public class UsuarioModel {
 		}
 		return data;
 		}
+		
 
 }
 
