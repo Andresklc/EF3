@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+
 import Entidad.Usuario;
 import Model.UsuarioModel;
 import Util.DatosGlobales;
@@ -88,6 +89,7 @@ public class FrmLogin extends JDialog implements ActionListener {
 			Usuario bean = model.valida(login, clave);
 
 			if (bean != null) {
+				
 				DatosGlobales.ID_USUARIO = bean.getIdUsuario();
 				frm.setVisible(true);
 				this.setVisible(false);

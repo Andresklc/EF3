@@ -20,6 +20,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import gui.frmBoleta;
+
 import Model.UsuarioModel;
 
 @SuppressWarnings("serial")
@@ -62,6 +64,7 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 	private JMenuItem mntReporteSala;
 	private JMenuItem mntReporteUsuario;
 	private JMenuItem mntReporteProveedor;
+	private JMenuItem mnboleta;
 
 	// Formularios
 	
@@ -264,6 +267,13 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 		listaItemMenus.add(mntReporteSala);
 		listaItemMenus.add(mntReporteUsuario);
 		listaItemMenus.add(mntReporteProveedor);
+		
+		JMenu mnProcesos = new JMenu("Procesos");
+		menuBar.add(mnProcesos);
+		
+		mnboleta = new JMenuItem("Boleta");
+		mnboleta.addActionListener(this);
+		mnProcesos.add(mnboleta);
 	
 		// Paso 4: Se los formularios al contenedor
 			
@@ -312,6 +322,9 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
+		if (arg0.getSource() == mnboleta) {
+			actionPerformedMnboleta(arg0);
+		}
 		//PC01 Registros
 	
 		
@@ -339,5 +352,9 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 		int posX = (int) (pantalla.getWidth() - ventana.getWidth()) / 2;
 		frm.setLocation(posX, 40);
 		
+	}
+	protected void actionPerformedMnboleta(ActionEvent arg0) {
+		frmBoleta frm=new frmBoleta();
+		frm.setVisible(true);
 	}
 }
