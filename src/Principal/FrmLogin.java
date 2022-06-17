@@ -93,7 +93,7 @@ public class FrmLogin extends JDialog implements ActionListener {
 				DatosGlobales.ID_USUARIO = bean.getIdUsuario();
 				frm.setVisible(true);
 				this.setVisible(false);
-				frm.muestraOpciones();
+
 			} else {
 				JOptionPane.showMessageDialog(this, "Usuario no valido");
 			}
