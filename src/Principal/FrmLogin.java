@@ -30,13 +30,13 @@ public class FrmLogin extends JDialog implements ActionListener {
 
 	//
 	public FrmLogin(FrmPrincipal frm) {
-		getContentPane().setBackground(new Color(44, 62, 80));
+		getContentPane().setBackground(new Color(0, 128, 128));
 		this.frm = frm;
 
 		getContentPane().setLayout(null);
 		this.setSize(500, 300);
 		this.setLocationRelativeTo(null);
-		this.setTitle("Sistema de gestión de biblioteca");
+		this.setTitle("Sistema de Venta de Ropa");
 
 		lblLogin = new JLabel("Username:");
 		lblLogin.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -45,7 +45,7 @@ public class FrmLogin extends JDialog implements ActionListener {
 		getContentPane().add(lblLogin);
 
 		txtLogin = new JTextField("luis");
-		txtLogin.setBackground(new Color(108, 122, 137));
+		txtLogin.setBackground(new Color(47, 79, 79));
 		txtLogin.setBounds(236, 62, 144, 25);
 		txtLogin.addActionListener(this);
 		getContentPane().add(txtLogin);
@@ -57,7 +57,7 @@ public class FrmLogin extends JDialog implements ActionListener {
 		getContentPane().add(lblClave);
 
 		txtClave = new JPasswordField("luis");
-		txtClave.setBackground(new Color(108, 122, 137));
+		txtClave.setBackground(new Color(47, 79, 79));
 		txtClave.addActionListener(this);
 		txtClave.setBounds(236, 94, 144, 25);
 		getContentPane().add(txtClave);

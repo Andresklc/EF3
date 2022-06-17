@@ -22,7 +22,7 @@ public class UsuarioModel {
 		PreparedStatement pstm = null;
 		try {
 			conn = MySqlDBConexion.getConexion();
-			String sql = "select * from usuario where login=? and password =?";
+			String sql = "select * from usuario where nomUsuario=? and claveUsu =?";
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, login);
 			pstm.setString(2, clave);
@@ -31,11 +31,10 @@ public class UsuarioModel {
 			if (rs.next()) {
 				bean = new Usuario();
 				bean.setIdUsuario(rs.getInt(1));
-				bean.setNombre(rs.getString("nombre"));
-				bean.setApellido(rs.getString("apellido"));
-				bean.setDni(rs.getString("dni"));
-				bean.setLogin(rs.getString("login"));
-				bean.setPassword(rs.getString("password"));
+				bean.setIdRoll(rs.getInt(2));
+				bean.setLogin(rs.getString("nomUsuario"));
+				bean.setContraseña(rs.getString("claveUsu"));;
+
 			}
 		} catch (Exception e) {
 			System.out.println(e);
@@ -79,7 +78,7 @@ public class UsuarioModel {
 		return data;
 	}
 
-	public int insertausuario(Usuario obj) {
+/*public int insertausuario(Usuario obj) {
 		//se va imprimir en la consola este numero
 			log.info(">>>inicio>>> insertaempresa()");
 		int salida = -1;
@@ -220,7 +219,7 @@ public class UsuarioModel {
 		return data;
 		}
 		
-
+*/
 }
 
 
