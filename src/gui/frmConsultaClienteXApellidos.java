@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import controlador.MySqlclienteDAO;
 import Entidad.cliente;
+import controlador.MySqlclienteDAO;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -29,7 +29,7 @@ public class frmConsultaClienteXApellidos extends JDialog implements KeyListener
 	private JPanel contentPane;
 	private JTextField txtApellidos;
 	private JButton btnEnviar;
-	private JTable tblLectores;
+	private JTable tblCliente;
 
 	/**
 	 * Launch the application.
@@ -72,7 +72,7 @@ public class frmConsultaClienteXApellidos extends JDialog implements KeyListener
 		
 		btnEnviar = new JButton("");
 		btnEnviar.addActionListener(this);
-		btnEnviar.setIcon(new ImageIcon(frmConsultaClienteXApellidos.class.getResource("/iconos/add.png")));
+		btnEnviar.setIcon(new ImageIcon(frmConsultaClienteXApellidos.class.getResource("/iconos/Add.gif")));
 		btnEnviar.setBounds(661, 22, 89, 52);
 		contentPane.add(btnEnviar);
 		
@@ -80,19 +80,21 @@ public class frmConsultaClienteXApellidos extends JDialog implements KeyListener
 		scrollPane.setBounds(10, 80, 740, 224);
 		contentPane.add(scrollPane);
 		
-		tblLectores = new JTable();
-		tblLectores.setModel(new DefaultTableModel(
+		tblCliente = new JTable();
+		tblCliente.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
-				"C\u00D3DIGO", "NOMBRES", "APELLIDOS", "DNI", "SEXO"
+				"C\u00D3DIGO", "NOMBRES", "APELLIDOS", "DNI", "sexo"
 			}
 		));
-		tblLectores.getColumnModel().getColumn(1).setPreferredWidth(197);
-		tblLectores.getColumnModel().getColumn(2).setPreferredWidth(184);
-		tblLectores.getColumnModel().getColumn(4).setPreferredWidth(83);
-		tblLectores.setFillsViewportHeight(true);
-		scrollPane.setViewportView(tblLectores);
+		tblCliente.getColumnModel().getColumn(0).setPreferredWidth(57);
+		tblCliente.getColumnModel().getColumn(1).setPreferredWidth(179);
+		tblCliente.getColumnModel().getColumn(2).setPreferredWidth(198);
+		tblCliente.getColumnModel().getColumn(3).setPreferredWidth(88);
+		tblCliente.getColumnModel().getColumn(4).setPreferredWidth(98);
+		tblCliente.setFillsViewportHeight(true);
+		scrollPane.setViewportView(tblCliente);
 	
 	}
 		
@@ -110,7 +112,7 @@ public class frmConsultaClienteXApellidos extends JDialog implements KeyListener
 		String apellido;
 		apellido=txtApellidos.getText();
 		//obtener modelo de la tabla tblLectores
-		DefaultTableModel model=(DefaultTableModel) tblLectores.getModel();
+		DefaultTableModel model=(DefaultTableModel) tblCliente.getModel();
 		//limpiar filas del modelo
 		model.setRowCount(0);
 		//invocar al método listAllByApellido
@@ -134,13 +136,13 @@ public class frmConsultaClienteXApellidos extends JDialog implements KeyListener
 		int posFila;
 		String cod,nom,ape,dni,sexo;
 		//fila seleccionada
-		posFila=tblLectores.getSelectedRow();
+		posFila=tblCliente.getSelectedRow();
 		//valores de la fila seleccionada
-		cod=tblLectores.getValueAt(posFila,0).toString();
-		nom=tblLectores.getValueAt(posFila,1).toString();
-		ape=tblLectores.getValueAt(posFila,2).toString();
-		dni=tblLectores.getValueAt(posFila,3).toString();
-		sexo=tblLectores.getValueAt(posFila,4).toString();
+		cod=tblCliente.getValueAt(posFila,0).toString();
+		nom=tblCliente.getValueAt(posFila,1).toString();
+		ape=tblCliente.getValueAt(posFila,2).toString();
+		dni=tblCliente.getValueAt(posFila,3).toString();
+		sexo=tblCliente.getValueAt(posFila,4).toString();
 		//mostrar en las cajas
 		frmBoleta.txtCodigoCliente.setText(cod);
 		frmBoleta.txtNombres.setText(nom);

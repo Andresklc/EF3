@@ -5,9 +5,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import Entidad.cliente;
-import interfaces.clienteDAO;
 import Util.MySqlDBConexion;
+import interfaces.clienteDAO;
 
 public class MySqlclienteDAO implements clienteDAO{
 
@@ -26,10 +27,10 @@ public class MySqlclienteDAO implements clienteDAO{
 			while(rs.next()) {
 				cliente bean=new cliente();
 				bean.setCodigo(rs.getString(1));
-				bean.setNombres(rs.getString(2));
-				bean.setApellidos(rs.getString(3));
-				bean.setDni(rs.getInt(4));
-				bean.setSexo(rs.getString(5));
+				bean.setNombres(rs.getString(3));
+				bean.setApellidos(rs.getString(4));
+				bean.setDni(rs.getString(2));
+				bean.setSexo(rs.getString(6));
 				data.add(bean);
 			}
 		} catch (SQLException e) {

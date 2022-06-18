@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Libreria {
-	public static int codigoUsuario;
+	public static int codigoUsuario=12;
 	
 	public static int findByNombre(String nombreABuscar,String nombreTabla,String nombreColumna){
 		int codigo=-1;
@@ -48,7 +48,7 @@ public class Libreria {
 		CallableStatement cstm=null;
 		ResultSet rs=null;
 		try {
-			cn=MySqlConexion.getConexion();
+			cn=MySqlDBConexion.getConexion();
 			String sql="call sp_generar_numero_boleta()";
 			cstm=cn.prepareCall(sql);
 			rs=cstm.executeQuery();

@@ -5,9 +5,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import Entidad.articulo;
-import interfaces.articuloDAO;
 import Util.MySqlDBConexion;
+import interfaces.articuloDAO;
 
 public class MySqlarticuloDAO implements articuloDAO{
 
@@ -27,7 +28,7 @@ public class MySqlarticuloDAO implements articuloDAO{
 				articulo bean=new articulo();
 				bean.setCodigo(rs.getInt(1));
 				bean.setNombre(rs.getString(2));
-				bean.setPrecio(rs.getDouble(3));
+				bean.setPrecio(rs.getDouble(4));
 				data.add(bean);
 			}
 		} catch (SQLException e) {

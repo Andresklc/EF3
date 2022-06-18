@@ -27,10 +27,13 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 
 import controlador.MySqlBoletaDAO;
+
+import com.toedter.calendar.JDateChooser;
+
 import Entidad.Boleta;
 import Entidad.Detalle;
 import Util.Libreria;
-import com.toedter.calendar.JDateChooser;
+
 import javax.swing.border.EtchedBorder;
 
 public class frmBoleta extends JFrame implements ActionListener {
@@ -48,13 +51,13 @@ public class frmBoleta extends JFrame implements ActionListener {
 	public static JTextField txtApellidos;
 	public static JTextField txtSexo;
 	public static JTextField txtDni;
-	private JButton btnBuscarLector;
+	private JButton btnBuscarCliente;
 	private JPanel panel_1;
 	private JLabel label;
 	public static  JTextField txtCodigoArticulo;
 	public static  JTextField txtNombreArticulo;
 	public static  JTextField txtPrecio;
-	private JButton btnBuscarConcepto;
+	private JButton btnBuscarArticulo;
 	private JLabel lblNombre;
 	private JLabel lblPrecio;
 	private JTextField txtCantidad;
@@ -144,11 +147,11 @@ public class frmBoleta extends JFrame implements ActionListener {
 		txtApellidos.setBounds(430, 71, 296, 20);
 		panel.add(txtApellidos);
 		
-		btnBuscarLector = new JButton("");
-		btnBuscarLector.addActionListener(this);
-		btnBuscarLector.setIcon(new ImageIcon(frmBoleta.class.getResource("/iconos/busca.png")));
-		btnBuscarLector.setBounds(275, 11, 89, 46);
-		panel.add(btnBuscarLector);
+		btnBuscarCliente = new JButton("");
+		btnBuscarCliente.addActionListener(this);
+		btnBuscarCliente.setIcon(new ImageIcon(frmBoleta.class.getResource("/iconos/Search.gif")));
+		btnBuscarCliente.setBounds(275, 11, 89, 46);
+		panel.add(btnBuscarCliente);
 		
 		JLabel lblSexo = new JLabel("Sexo:");
 		lblSexo.setBounds(540, 38, 55, 14);
@@ -185,11 +188,11 @@ public class frmBoleta extends JFrame implements ActionListener {
 		txtCodigoArticulo.setBounds(88, 24, 178, 20);
 		panel_1.add(txtCodigoArticulo);
 		
-		btnBuscarConcepto = new JButton("");
-		btnBuscarConcepto.addActionListener(this);
-		btnBuscarConcepto.setIcon(new ImageIcon(frmBoleta.class.getResource("/iconos/busca.png")));
-		btnBuscarConcepto.setBounds(275, 11, 89, 46);
-		panel_1.add(btnBuscarConcepto);
+		btnBuscarArticulo = new JButton("");
+		btnBuscarArticulo.addActionListener(this);
+		btnBuscarArticulo.setIcon(new ImageIcon(frmBoleta.class.getResource("/iconos/Search.gif")));
+		btnBuscarArticulo.setBounds(275, 11, 89, 46);
+		panel_1.add(btnBuscarArticulo);
 		
 		lblNombre = new JLabel("Nombre:");
 		lblNombre.setBounds(10, 63, 77, 14);
@@ -221,13 +224,13 @@ public class frmBoleta extends JFrame implements ActionListener {
 		
 		btnAdicionar = new JButton("");
 		btnAdicionar.addActionListener(this);
-		btnAdicionar.setIcon(new ImageIcon(frmBoleta.class.getResource("/iconos/add.png")));
+		btnAdicionar.setIcon(new ImageIcon(frmBoleta.class.getResource("/iconos/Add.gif")));
 		btnAdicionar.setBounds(374, 11, 89, 46);
 		panel_1.add(btnAdicionar);
 		
 		btnEliminar = new JButton("");
 		btnEliminar.addActionListener(this);
-		btnEliminar.setIcon(new ImageIcon(frmBoleta.class.getResource("/iconos/cerrar.png")));
+		btnEliminar.setIcon(new ImageIcon(frmBoleta.class.getResource("/iconos/Delete.gif")));
 		btnEliminar.setBounds(473, 11, 89, 46);
 		panel_1.add(btnEliminar);
 
@@ -257,7 +260,7 @@ public class frmBoleta extends JFrame implements ActionListener {
 		
 		btnGrabar = new JButton("");
 		btnGrabar.addActionListener(this);
-		btnGrabar.setIcon(new ImageIcon(frmBoleta.class.getResource("/iconos/save.png")));
+		btnGrabar.setIcon(new ImageIcon(frmBoleta.class.getResource("/iconos/Save.gif")));
 		btnGrabar.setBounds(119, 575, 89, 46);
 		contentPane.add(btnGrabar);
 		
@@ -290,7 +293,7 @@ public class frmBoleta extends JFrame implements ActionListener {
 		
 		btnNuevo = new JButton("");
 		btnNuevo.addActionListener(this);
-		btnNuevo.setIcon(new ImageIcon(frmBoleta.class.getResource("/iconos/copy.png")));
+		btnNuevo.setIcon(new ImageIcon(frmBoleta.class.getResource("/iconos/Text.gif")));
 		btnNuevo.setBounds(10, 577, 89, 46);
 		contentPane.add(btnNuevo);
 	}
@@ -307,10 +310,10 @@ public class frmBoleta extends JFrame implements ActionListener {
 		if (arg0.getSource() == btnAdicionar) {
 			actionPerformedBtnAdicionar(arg0);
 		}
-		if (arg0.getSource() == btnBuscarConcepto) {
+		if (arg0.getSource() == btnBuscarArticulo) {
 			actionPerformedBtnBuscarConcepto(arg0);
 		}
-		if (arg0.getSource() == btnBuscarLector) {
+		if (arg0.getSource() == btnBuscarCliente) {
 			actionPerformedBtnBuscarLector(arg0);
 		}
 	}
@@ -322,6 +325,8 @@ public class frmBoleta extends JFrame implements ActionListener {
 		frmConsultaArticuloXNombre frm=new frmConsultaArticuloXNombre();
 		frm.setVisible(true);
 	}
+	
+	
 	protected void actionPerformedBtnAdicionar(ActionEvent arg0) {
 		/*
 		//variables

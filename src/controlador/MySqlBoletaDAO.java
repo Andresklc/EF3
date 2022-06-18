@@ -5,10 +5,11 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import Entidad.Boleta;
 import Entidad.Detalle;
-import interfaces.BoletaDAO;
 import Util.MySqlDBConexion;
+import interfaces.BoletaDAO;
 
 public class MySqlBoletaDAO implements BoletaDAO{
 

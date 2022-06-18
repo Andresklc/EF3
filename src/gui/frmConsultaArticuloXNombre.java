@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import controlador.MySqlarticuloDAO;
 import Entidad.articulo;
+import controlador.MySqlarticuloDAO;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -71,7 +71,7 @@ public class frmConsultaArticuloXNombre extends JDialog implements KeyListener, 
 		{
 			bnEnviar = new JButton("");
 			bnEnviar.addActionListener(this);
-			bnEnviar.setIcon(new ImageIcon(frmConsultaArticuloXNombre.class.getResource("/iconos/add.png")));
+			bnEnviar.setIcon(new ImageIcon(frmConsultaArticuloXNombre.class.getResource("/iconos/Add.gif")));
 			bnEnviar.setBounds(611, 11, 89, 45);
 			contentPanel.add(bnEnviar);
 		}
@@ -85,11 +85,11 @@ public class frmConsultaArticuloXNombre extends JDialog implements KeyListener, 
 					new Object[][] {
 					},
 					new String[] {
-						"C\u00D3DIGO", "NOMBRE", "PRECIO"
+						"C\u00D3DIGO", "NOMBRE", "precio"
 					}
 				));
 				tblConceptos.getColumnModel().getColumn(0).setPreferredWidth(57);
-				tblConceptos.getColumnModel().getColumn(1).setPreferredWidth(467);
+				tblConceptos.getColumnModel().getColumn(1).setPreferredWidth(489);
 				tblConceptos.setFillsViewportHeight(true);
 				scrollPane.setViewportView(tblConceptos);
 			}
