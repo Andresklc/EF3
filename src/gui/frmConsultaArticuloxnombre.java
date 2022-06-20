@@ -2,7 +2,6 @@ package gui;
 
 
 import java.awt.BorderLayout;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
@@ -14,7 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
-import javax.swing.ImageIcon;
 
 import java.awt.EventQueue;
 
