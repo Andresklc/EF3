@@ -6,12 +6,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 
 import javax.swing.SwingConstants;
 import java.awt.Color;
@@ -21,7 +17,6 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 
-import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
@@ -29,9 +24,7 @@ import javax.swing.JScrollPane;
 
 import com.toedter.calendar.JDateChooser;
 
-import Entidad.Boleta;
-import Entidad.Detalle;
-import Util.Libreria;
+
 
 
 import javax.swing.JInternalFrame;

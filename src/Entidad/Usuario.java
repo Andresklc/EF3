@@ -1,8 +1,6 @@
 package Entidad;
 
 
-import java.sql.Date;
-
 public class Usuario {
 
 	private int idUsuario;
