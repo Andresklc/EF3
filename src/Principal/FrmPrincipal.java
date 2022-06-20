@@ -20,8 +20,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
-import gui.frmBoleta;
+import gui.frmConsultaArticuloXNombre;
+import gui.frmConsultaClienteXApellidos;
 import gui.frmInternalBoleta;
+import java.awt.SystemColor;
 
 @SuppressWarnings("serial")
 public class FrmPrincipal extends JFrame implements WindowListener, ActionListener {
@@ -37,10 +39,13 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 	
 	// Agrega el item de menu
 
-
 	private JMenuItem mntboleta;
-	
-	
+
+	public frmInternalBoleta frmInternalBoleta = new frmInternalBoleta();
+	private JMenuItem mntArticulo;
+	public frmConsultaArticuloXNombre frmConsultaArticuloXNombre = new frmConsultaArticuloXNombre();
+	private JMenuItem mntCliente;
+	public frmConsultaClienteXApellidos frmConsultaClienteXApellidos = new frmConsultaClienteXApellidos();
 
 	// Formularios
 	
@@ -53,7 +58,7 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 		this.setResizable(false);
 
 		desktop.setSize(1000, 500);
-		desktop.setBackground(new Color(44, 62, 80));
+		desktop.setBackground(SystemColor.activeCaption);
 
 		getContentPane().add(desktop, BorderLayout.CENTER);
 
@@ -75,9 +80,31 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 		
 		listaItemMenus.add(mntboleta);
 		
+		JMenu mnConsulta = new JMenu("Consulta");
+		menuBar.add(mnConsulta);
 		
-		//desktop.add();
-	
+		mntArticulo = new JMenuItem("Articulo");
+		mntArticulo.setVisible(true);
+		mntArticulo.addActionListener(this);
+		mnConsulta.add(mntArticulo);
+		
+		listaMenus.add(mnConsulta);
+		
+		listaItemMenus.add(mntArticulo);
+		
+		mntCliente = new JMenuItem("Cliente");
+		mntCliente.setVisible(true);
+		mntCliente.addActionListener(this);
+		mnConsulta.add(mntCliente);
+		frmConsultaClienteXApellidos.setMaximizable(false);
+		desktop.add(frmConsultaClienteXApellidos);
+		frmConsultaArticuloXNombre.setBounds(116, 65, 726, 364);
+		frmConsultaClienteXApellidos.getContentPane().add(frmConsultaArticuloXNombre);
+		
+		frmConsultaArticuloXNombre.setMaximizable(false);
+		frmInternalBoleta.setBounds(-16, -15, 776, 672);
+		frmConsultaClienteXApellidos.getContentPane().add(frmInternalBoleta);
+		frmInternalBoleta.setTitle("Generador de Boleta");
 
 			
 	}
@@ -125,10 +152,18 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		/*if (arg0.getSource() == mntboleta) {
+		if (arg0.getSource() == mntCliente) {
+			centrar(frmConsultaClienteXApellidos);
+			frmConsultaClienteXApellidos.setVisible(true);
+		}
+		if (arg0.getSource() == mntArticulo) {
+			centrar(frmConsultaArticuloXNombre);
+			frmConsultaArticuloXNombre.setVisible(true);
+		}
+		if (arg0.getSource() == mntboleta) {
 			centrar(frmInternalBoleta);
 			frmInternalBoleta.setVisible(true);
-		}*/
+		}
 		//PC01 Registros
 	
 		
@@ -147,7 +182,15 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 		
 	}
 	protected void actionPerformedMnboleta(ActionEvent arg0) {
-		/*frmInternalBoleta frm=new frmInternalBoleta();
-		frm.setVisible(true);*/
+		frmInternalBoleta frm=new frmInternalBoleta();
+		frm.setVisible(true);
+	}
+	protected void actionPerformedMntArticuloJMenuItem(ActionEvent arg0) {
+		frmConsultaArticuloXNombre frm=new frmConsultaArticuloXNombre();
+		frm.setVisible(true);
+	}
+	protected void actionPerformedMntClienteJMenuItem(ActionEvent arg0) {
+		frmConsultaClienteXApellidos frm=new frmConsultaClienteXApellidos();
+		frm.setVisible(true);
 	}
 }
