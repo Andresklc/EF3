@@ -23,7 +23,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.awt.event.ActionEvent;
 
-public class frmConsultaArticuloXNombre extends JInternalFrame implements ActionListener {
+public class frmConsultaArticulo extends JInternalFrame implements ActionListener {
 
 	/**
 	 * 
@@ -42,7 +42,7 @@ public class frmConsultaArticuloXNombre extends JInternalFrame implements Action
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frmConsultaArticuloXNombre frame = new frmConsultaArticuloXNombre();
+					frmConsultaArticulo frame = new frmConsultaArticulo();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,7 +54,7 @@ public class frmConsultaArticuloXNombre extends JInternalFrame implements Action
 	/**
 	 * Create the frame.
 	 */
-	public frmConsultaArticuloXNombre() {
+	public frmConsultaArticulo() {
 		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);
@@ -77,7 +77,7 @@ public class frmConsultaArticuloXNombre extends JInternalFrame implements Action
 		{
 			bnEnviar = new JButton("");
 			bnEnviar.addActionListener(this);
-			bnEnviar.setIcon(new ImageIcon(frmConsultaArticuloXNombre.class.getResource("/iconos/Add.gif")));
+			bnEnviar.setIcon(new ImageIcon(frmConsultaArticulo.class.getResource("/iconos/Add.gif")));
 			bnEnviar.setBounds(611, 11, 89, 45);
 			contentPanel.add(bnEnviar);
 		}

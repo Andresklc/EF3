@@ -19,8 +19,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
-import gui.frmConsultaArticuloXNombre;
-import gui.frmConsultaClienteXApellidos;
+import gui.frmConsultaArticulo;
+import gui.frmConsultaCliente;
 import gui.frmInternalBoleta;
 import java.awt.SystemColor;
 
@@ -42,9 +42,9 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 
 	public frmInternalBoleta frmInternalBoleta = new frmInternalBoleta();
 	private JMenuItem mntArticulo;
-	public frmConsultaArticuloXNombre frmConsultaArticuloXNombre = new frmConsultaArticuloXNombre();
+	public frmConsultaArticulo frmConsultaArticuloXNombre = new frmConsultaArticulo();
 	private JMenuItem mntCliente;
-	public frmConsultaClienteXApellidos frmConsultaClienteXApellidos = new frmConsultaClienteXApellidos();
+	public frmConsultaCliente frmConsultaClienteXApellidos = new frmConsultaCliente();
 
 	// Formularios
 	
@@ -185,11 +185,11 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 		frm.setVisible(true);
 	}
 	protected void actionPerformedMntArticuloJMenuItem(ActionEvent arg0) {
-		frmConsultaArticuloXNombre frm=new frmConsultaArticuloXNombre();
+		frmConsultaArticulo frm=new frmConsultaArticulo();
 		frm.setVisible(true);
 	}
 	protected void actionPerformedMntClienteJMenuItem(ActionEvent arg0) {
-		frmConsultaClienteXApellidos frm=new frmConsultaClienteXApellidos();
+		frmConsultaCliente frm=new frmConsultaCliente();
 		frm.setVisible(true);
 	}
 }

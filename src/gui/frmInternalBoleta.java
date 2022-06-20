@@ -41,7 +41,6 @@ public class frmInternalBoleta extends JInternalFrame {
 	private JLabel lblBoleta;
 	public static JTextField txtCodigoCliente;
 	public static JTextField txtNombres;
-	public static JTextField txtApellidos;
 	public static JTextField txtSexo;
 	public static JTextField txtDni;
 	private JButton btnBuscarCliente;
@@ -67,6 +66,7 @@ public class frmInternalBoleta extends JInternalFrame {
 	private JScrollPane scrollPane;
 	private JDateChooser dcFecha;
 	private JButton btnNuevo;
+	private JTextField textField;
 	/**
 	 * Launch the application.
 	 */
@@ -133,40 +133,36 @@ public class frmInternalBoleta extends JInternalFrame {
 		panel.add(txtNombres);
 		txtNombres.setColumns(10);
 		
-		JLabel lblApellidos = new JLabel("Apellidos:");
-		lblApellidos.setBounds(372, 74, 77, 14);
-		panel.add(lblApellidos);
-		
-		txtApellidos = new JTextField();
-		txtApellidos.setEditable(false);
-		txtApellidos.setColumns(10);
-		txtApellidos.setBounds(430, 71, 296, 20);
-		panel.add(txtApellidos);
-		
 		btnBuscarCliente = new JButton("");
 		btnBuscarCliente.setIcon(new ImageIcon(frmInternalBoleta.class.getResource("/iconos/Search.gif")));
 		btnBuscarCliente.setBounds(275, 11, 89, 46);
 		panel.add(btnBuscarCliente);
 		
 		JLabel lblSexo = new JLabel("Sexo:");
-		lblSexo.setBounds(540, 38, 55, 14);
+		lblSexo.setBounds(392, 74, 55, 14);
 		panel.add(lblSexo);
 		
 		txtSexo = new JTextField();
 		txtSexo.setEditable(false);
 		txtSexo.setColumns(10);
-		txtSexo.setBounds(605, 38, 121, 20);
+		txtSexo.setBounds(440, 71, 77, 20);
 		panel.add(txtSexo);
 		
 		JLabel lblDni = new JLabel("DNI:");
-		lblDni.setBounds(372, 41, 55, 14);
+		lblDni.setBounds(544, 74, 55, 14);
 		panel.add(lblDni);
 		
 		txtDni = new JTextField();
 		txtDni.setEditable(false);
 		txtDni.setColumns(10);
-		txtDni.setBounds(430, 38, 100, 20);
+		txtDni.setBounds(574, 71, 141, 20);
 		panel.add(txtDni);
+		
+		textField = new JTextField();
+		textField.setEditable(false);
+		textField.setColumns(10);
+		textField.setBounds(440, 35, 275, 20);
+		panel.add(textField);
 		
 		panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Datos del Articulo", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));

@@ -22,7 +22,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JInternalFrame;
 import java.awt.event.ActionListener;
 
-public class frmConsultaClienteXApellidos  extends JInternalFrame implements ActionListener {
+public class frmConsultaCliente  extends JInternalFrame implements ActionListener {
 
 	/**
 	 * 
@@ -40,7 +40,7 @@ public class frmConsultaClienteXApellidos  extends JInternalFrame implements Act
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frmConsultaClienteXApellidos frame = new frmConsultaClienteXApellidos();
+					frmConsultaCliente frame = new frmConsultaCliente();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,7 +52,7 @@ public class frmConsultaClienteXApellidos  extends JInternalFrame implements Act
 	/**
 	 * Create the frame.
 	 */
-	public frmConsultaClienteXApellidos() {
+	public frmConsultaCliente() {
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(100, 100, 776, 354);
@@ -63,7 +63,7 @@ public class frmConsultaClienteXApellidos  extends JInternalFrame implements Act
 		
 		btnEnviar = new JButton("");
 		btnEnviar.addActionListener(this);
-		btnEnviar.setIcon(new ImageIcon(frmConsultaClienteXApellidos.class.getResource("/iconos/Add.gif")));
+		btnEnviar.setIcon(new ImageIcon(frmConsultaCliente.class.getResource("/iconos/Add.gif")));
 		btnEnviar.setBounds(661, 22, 89, 52);
 		contentPane.add(btnEnviar);
 		
