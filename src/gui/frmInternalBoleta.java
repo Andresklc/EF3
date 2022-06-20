@@ -25,13 +25,14 @@ import javax.swing.JScrollPane;
 
 
 import com.toedter.calendar.JDateChooser;
-
+import interfaces.frmConsultaArticuloxnombre;
 
 
 
 import javax.swing.JInternalFrame;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JFrame;
 
 public class frmInternalBoleta extends JInternalFrame implements ActionListener {
 
@@ -41,7 +42,7 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener 
 	private static final long serialVersionUID = 1L;
 
 
-	
+	public frmConsultaArticuloxnombre frmConsultaArticuloxnombre = new frmConsultaArticuloxnombre();
 	private JPanel contentPane;
 	private JLabel lblBoleta;
 	public static JTextField txtCodigoCliente;
@@ -95,9 +96,9 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener 
 	 * Create the frame.
 	 */
 	public frmInternalBoleta() {
-		setIconifiable(true);
-		setMaximizable(true);
 		setClosable(true);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setIconifiable(true);
 		setBounds(100, 100, 450, 300);
 		setBounds(100, 100, 772, 662);
 		contentPane = new JPanel();
@@ -203,6 +204,7 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener 
 		panel_1.add(txtCodigoArticulo);
 		
 		btnBuscarArticulo = new JButton("");
+		btnBuscarArticulo.addActionListener(this);
 		btnBuscarArticulo.setIcon(new ImageIcon(frmInternalBoleta.class.getResource("/iconos/Search.gif")));
 		btnBuscarArticulo.setBounds(275, 11, 89, 46);
 		panel_1.add(btnBuscarArticulo);
@@ -305,12 +307,18 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener 
 		
 	}
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnBuscarArticulo) {
+			actionPerformedBtnBuscarArticuloJButton(e);
+		}
 		if (e.getSource() == btnBuscarCliente) {
 			actionPerformedBtnBuscarClienteJButton(e);
 		}
 	}
 	protected void actionPerformedBtnBuscarClienteJButton(ActionEvent e) {
-		frmConsultaClienteXApellidos frm=new frmConsultaClienteXApellidos();
+		
+	}
+	protected void actionPerformedBtnBuscarArticuloJButton(ActionEvent e) {
+		frmConsultaArticuloxnombre frm=new frmConsultaArticuloxnombre();
 		frm.setVisible(true);
 	}
 }

@@ -22,6 +22,7 @@ import javax.swing.JInternalFrame;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.awt.event.ActionEvent;
+import javax.swing.JFrame;
 
 public class frmConsultaArticulo extends JInternalFrame implements ActionListener {
 
@@ -55,6 +56,7 @@ public class frmConsultaArticulo extends JInternalFrame implements ActionListene
 	 * Create the frame.
 	 */
 	public frmConsultaArticulo() {
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);

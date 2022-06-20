@@ -21,6 +21,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JInternalFrame;
 import java.awt.event.ActionListener;
+import javax.swing.JFrame;
 
 public class frmConsultaCliente  extends JInternalFrame implements ActionListener {
 
@@ -53,6 +54,7 @@ public class frmConsultaCliente  extends JInternalFrame implements ActionListene
 	 * Create the frame.
 	 */
 	public frmConsultaCliente() {
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(100, 100, 776, 354);
