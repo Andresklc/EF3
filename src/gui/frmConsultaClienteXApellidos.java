@@ -22,14 +22,13 @@ import java.awt.event.ActionEvent;
 import javax.swing.JInternalFrame;
 import java.awt.event.ActionListener;
 
-public class frmConsultaCliente  extends JInternalFrame implements ActionListener {
+public class frmConsultaClienteXApellidos  extends JInternalFrame implements ActionListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JButton btnEnviar;
 	private JTable tblCliente;
 	private JTextField txtNombre;
 
@@ -40,7 +39,7 @@ public class frmConsultaCliente  extends JInternalFrame implements ActionListene
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frmConsultaCliente frame = new frmConsultaCliente();
+					frmConsultaClienteXApellidos frame = new frmConsultaClienteXApellidos();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,20 +51,12 @@ public class frmConsultaCliente  extends JInternalFrame implements ActionListene
 	/**
 	 * Create the frame.
 	 */
-	public frmConsultaCliente() {
-		setIconifiable(true);
-		setClosable(true);
+	public frmConsultaClienteXApellidos() {
 		setBounds(100, 100, 776, 354);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		btnEnviar = new JButton("");
-		btnEnviar.addActionListener(this);
-		btnEnviar.setIcon(new ImageIcon(frmConsultaCliente.class.getResource("/iconos/Search.gif")));
-		btnEnviar.setBounds(661, 22, 89, 52);
-		contentPane.add(btnEnviar);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 80, 740, 224);
@@ -88,7 +79,7 @@ public class frmConsultaCliente  extends JInternalFrame implements ActionListene
 		
 		txtNombre = new JTextField();
 		txtNombre.setColumns(10);
-		txtNombre.setBounds(76, 41, 480, 20);
+		txtNombre.setBounds(76, 41, 674, 20);
 		contentPane.add(txtNombre);
 		
 		JLabel lblNombre = new JLabel("Nombre");
@@ -100,23 +91,6 @@ public class frmConsultaCliente  extends JInternalFrame implements ActionListene
 	
 	
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btnEnviar) {
-			actionPerformedBtnEnviarJButton(e);
-		}
-	}
-	protected void actionPerformedBtnEnviarJButton(ActionEvent e) {
-		String nombre=txtNombre.getText();
-		
-		ClienteModel model=new ClienteModel();
-		List<cliente> lstcliente=model.listaporNombreApellido(nombre);
-		DefaultTableModel dtm = (DefaultTableModel) tblCliente.getModel();
-		dtm.setRowCount(0);
-		Object[] fila = null; 
-		for (cliente x:lstcliente){
-			fila = new Object[] {x.getCodigo(), x.getNombres(),x.getDni(),x.getSexo()};
-			dtm.addRow(fila);
-		}
-		
 	}
 	private void listar() {
 		ClienteModel model=new ClienteModel();

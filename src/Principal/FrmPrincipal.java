@@ -39,12 +39,12 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 	// Agrega el item de menu
 
 	private JMenuItem mntboleta;
-
-	public frmInternalBoleta frmInternalBoleta = new frmInternalBoleta();
 	private JMenuItem mntArticulo;
-	public frmConsultaArticulo frmConsultaArticuloXNombre = new frmConsultaArticulo();
 	private JMenuItem mntCliente;
-	public frmConsultaCliente frmConsultaClienteXApellidos = new frmConsultaCliente();
+	public frmConsultaCliente frmConsultaCliente = new frmConsultaCliente();
+	public frmConsultaArticulo frmConsultaArticulo = new frmConsultaArticulo();
+	public frmInternalBoleta frmInternalBoleta = new frmInternalBoleta();
+
 
 	// Formularios
 	
@@ -95,15 +95,26 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 		mntCliente.setVisible(true);
 		mntCliente.addActionListener(this);
 		mnConsulta.add(mntCliente);
-		frmConsultaClienteXApellidos.setMaximizable(false);
-		desktop.add(frmConsultaClienteXApellidos);
-		frmConsultaArticuloXNombre.setBounds(116, 65, 726, 364);
-		frmConsultaClienteXApellidos.getContentPane().add(frmConsultaArticuloXNombre);
 		
-		frmConsultaArticuloXNombre.setMaximizable(false);
-		frmInternalBoleta.setBounds(-16, -15, 776, 672);
-		frmConsultaClienteXApellidos.getContentPane().add(frmInternalBoleta);
+		frmConsultaCliente.setLocation(350, 234);
+		frmConsultaCliente.setMaximizable(false);
+		
+		desktop.add(frmConsultaCliente);
+		
+		
 		frmInternalBoleta.setTitle("Generador de Boleta");
+		frmInternalBoleta.setLocation(350, 234);
+		frmInternalBoleta.setMaximizable(false);
+		
+		desktop.add(frmInternalBoleta);
+		
+
+		frmConsultaArticulo.setMaximizable(false);
+		frmConsultaArticulo.setLocation(350, 234);
+
+		desktop.add(frmConsultaArticulo);
+		
+		
 
 			
 	}
@@ -152,12 +163,12 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getSource() == mntCliente) {
-			centrar(frmConsultaClienteXApellidos);
-			frmConsultaClienteXApellidos.setVisible(true);
+			centrar(frmConsultaCliente);
+			frmConsultaCliente.setVisible(true);
 		}
 		if (arg0.getSource() == mntArticulo) {
-			centrar(frmConsultaArticuloXNombre);
-			frmConsultaArticuloXNombre.setVisible(true);
+			centrar(frmConsultaArticulo);
+			frmConsultaArticulo.setVisible(true);
 		}
 		if (arg0.getSource() == mntboleta) {
 			centrar(frmInternalBoleta);

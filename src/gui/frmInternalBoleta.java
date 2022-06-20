@@ -9,7 +9,9 @@ import javax.swing.JLabel;
 
 import java.awt.Font;
 
+
 import javax.swing.SwingConstants;
+
 import java.awt.Color;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
@@ -28,13 +30,16 @@ import com.toedter.calendar.JDateChooser;
 
 
 import javax.swing.JInternalFrame;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class frmInternalBoleta extends JInternalFrame {
+public class frmInternalBoleta extends JInternalFrame implements ActionListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
 
 	
 	private JPanel contentPane;
@@ -54,7 +59,6 @@ public class frmInternalBoleta extends JInternalFrame {
 	private JLabel lblPrecio;
 	private JTextField txtCantidad;
 	private JLabel lblCantidad;
-	private JButton btnAdicionar;
 	private JButton btnEliminar;
 	private JLabel lblTotal;
 	private JTextField txtTotal;
@@ -67,6 +71,10 @@ public class frmInternalBoleta extends JInternalFrame {
 	private JDateChooser dcFecha;
 	private JButton btnNuevo;
 	private JTextField textField;
+	private JLabel lblDireccion;
+
+	
+
 	/**
 	 * Launch the application.
 	 */
@@ -103,7 +111,7 @@ public class frmInternalBoleta extends JInternalFrame {
 		lblBoleta.setBackground(Color.BLACK);
 		lblBoleta.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBoleta.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblBoleta.setBounds(0, 22, 746, 47);
+		lblBoleta.setBounds(0, 22, 767, 47);
 		contentPane.add(lblBoleta);
 		
 		JPanel panel = new JPanel();
@@ -118,7 +126,7 @@ public class frmInternalBoleta extends JInternalFrame {
 		
 		txtCodigoCliente = new JTextField();
 		txtCodigoCliente.setEditable(false);
-		txtCodigoCliente.setBounds(88, 35, 178, 20);
+		txtCodigoCliente.setBounds(88, 35, 110, 20);
 		panel.add(txtCodigoCliente);
 		txtCodigoCliente.setColumns(10);
 		
@@ -134,8 +142,9 @@ public class frmInternalBoleta extends JInternalFrame {
 		txtNombres.setColumns(10);
 		
 		btnBuscarCliente = new JButton("");
+		btnBuscarCliente.addActionListener(this);
 		btnBuscarCliente.setIcon(new ImageIcon(frmInternalBoleta.class.getResource("/iconos/Search.gif")));
-		btnBuscarCliente.setBounds(275, 11, 89, 46);
+		btnBuscarCliente.setBounds(208, 11, 55, 46);
 		panel.add(btnBuscarCliente);
 		
 		JLabel lblSexo = new JLabel("Sexo:");
@@ -161,8 +170,22 @@ public class frmInternalBoleta extends JInternalFrame {
 		textField = new JTextField();
 		textField.setEditable(false);
 		textField.setColumns(10);
-		textField.setBounds(440, 35, 275, 20);
+		textField.setBounds(482, 35, 233, 20);
 		panel.add(textField);
+		
+		lblDireccion = new JLabel("Direcci\u00F3n:");
+		lblDireccion.setBounds(417, 38, 55, 14);
+		panel.add(lblDireccion);
+		
+		JButton btnAdicionarCliente = new JButton("");
+		btnAdicionarCliente.setIcon(new ImageIcon(frmInternalBoleta.class.getResource("/iconos/Add.gif")));
+		btnAdicionarCliente.setBounds(273, 11, 55, 46);
+		panel.add(btnAdicionarCliente);
+		
+		btnEliminar = new JButton("");
+		btnEliminar.setBounds(338, 11, 55, 46);
+		panel.add(btnEliminar);
+		btnEliminar.setIcon(new ImageIcon(frmInternalBoleta.class.getResource("/iconos/Delete.gif")));
 		
 		panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Datos del Articulo", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -212,15 +235,10 @@ public class frmInternalBoleta extends JInternalFrame {
 		lblCantidad.setBounds(558, 66, 77, 14);
 		panel_1.add(lblCantidad);
 		
-		btnAdicionar = new JButton("");
-		btnAdicionar.setIcon(new ImageIcon(frmInternalBoleta.class.getResource("/iconos/Add.gif")));
-		btnAdicionar.setBounds(374, 11, 89, 46);
-		panel_1.add(btnAdicionar);
-		
-		btnEliminar = new JButton("");
-		btnEliminar.setIcon(new ImageIcon(frmInternalBoleta.class.getResource("/iconos/Delete.gif")));
-		btnEliminar.setBounds(473, 11, 89, 46);
-		panel_1.add(btnEliminar);
+		JButton btnEliminar_1 = new JButton("");
+		btnEliminar_1.setIcon(new ImageIcon(frmInternalBoleta.class.getResource("/iconos/Delete.gif")));
+		btnEliminar_1.setBounds(374, 11, 89, 46);
+		panel_1.add(btnEliminar_1);
 
 		
 		lblTotal = new JLabel("Total:");
@@ -283,6 +301,16 @@ public class frmInternalBoleta extends JInternalFrame {
 		btnNuevo.setIcon(new ImageIcon(frmInternalBoleta.class.getResource("/iconos/Text.gif")));
 		btnNuevo.setBounds(10, 577, 89, 46);
 		contentPane.add(btnNuevo);
+		
+		
 	}
-	
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnBuscarCliente) {
+			actionPerformedBtnBuscarClienteJButton(e);
+		}
+	}
+	protected void actionPerformedBtnBuscarClienteJButton(ActionEvent e) {
+		frmConsultaClienteXApellidos frm=new frmConsultaClienteXApellidos();
+		frm.setVisible(true);
+	}
 }

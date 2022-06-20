@@ -23,7 +23,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.awt.event.ActionEvent;
 
-public class frmConsultaArticulo extends JInternalFrame implements ActionListener {
+public class frmConsultaArticuloxnombre extends JInternalFrame implements ActionListener {
 
 	/**
 	 * 
@@ -31,7 +31,6 @@ public class frmConsultaArticulo extends JInternalFrame implements ActionListene
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtNombre;
-	private JButton bnEnviar;
 	private JTable tblConceptos;
 	private JScrollPane scrollPane;
 
@@ -54,10 +53,7 @@ public class frmConsultaArticulo extends JInternalFrame implements ActionListene
 	/**
 	 * Create the frame.
 	 */
-	public frmConsultaArticulo() {
-		setMaximizable(true);
-		setIconifiable(true);
-		setClosable(true);
+	public frmConsultaArticuloxnombre() {
 		setBounds(100, 100, 726, 364);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -65,21 +61,14 @@ public class frmConsultaArticulo extends JInternalFrame implements ActionListene
 		contentPanel.setLayout(null);
 		{
 			JLabel lblNombre = new JLabel("Nombre:");
-			lblNombre.setBounds(10, 37, 70, 14);
+			lblNombre.setBounds(20, 37, 70, 14);
 			contentPanel.add(lblNombre);
 		}
 		{
 			txtNombre = new JTextField();
-			txtNombre.setBounds(76, 34, 511, 20);
+			txtNombre.setBounds(76, 34, 624, 20);
 			contentPanel.add(txtNombre);
 			txtNombre.setColumns(10);
-		}
-		{
-			bnEnviar = new JButton("");
-			bnEnviar.addActionListener(this);
-			bnEnviar.setIcon(new ImageIcon(frmConsultaArticulo.class.getResource("/iconos/Search.gif")));
-			bnEnviar.setBounds(611, 11, 89, 45);
-			contentPanel.add(bnEnviar);
 		}
 		{
 			scrollPane = new JScrollPane();
@@ -105,23 +94,6 @@ public class frmConsultaArticulo extends JInternalFrame implements ActionListene
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == bnEnviar) {
-			actionPerformedBnEnviarJButton(e);
-		}
-	}
-	protected void actionPerformedBnEnviarJButton(ActionEvent e) {
-		String nombre=txtNombre.getText();
-		
-		ArticuloModel model=new ArticuloModel();
-		List<articulo> lstArticulo=model.listAllByNombre(nombre);
-		DefaultTableModel dtm = (DefaultTableModel) tblConceptos.getModel();
-		dtm.setRowCount(0);
-		Object[] fila = null; 
-		for (articulo x:lstArticulo){
-			fila = new Object[] {x.getCodigo(), x.getNombre(),x.getPrecio()};
-			dtm.addRow(fila);
-		}
-		
 	}
 	private void listar() {
 		ArticuloModel model=new ArticuloModel();
