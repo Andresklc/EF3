@@ -1,12 +1,18 @@
 package Entidad;
 
-public class Categoria {
+public class Categoria extends proveedor{
 
 	private int idCat;
 	private String nomCat;
 	private String descCat;
 	private int estCat;
 	
+	
+	public Categoria(String nombre,String nomCat) {
+		super(nombre);
+		this.nomCat = nomCat;
+
+	}
 	public int getIdCat() {
 		return idCat;
 	}

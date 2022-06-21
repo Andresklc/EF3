@@ -2,20 +2,38 @@ package interfaces;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
-public class frmConsultaClienteXApellidos extends JDialog {
+import Entidad.cliente;
+import Model.ClienteModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+
+
+public class frmConsultaClienteXApellidos extends JDialog implements ActionListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-
+	private JTable tblCliente;
+	private JTextField txtNombre;
+	private JButton cancelButton;
+	private JButton btnBuscar;
+	private JButton okButton;
+	private int idSeleccionado = -1;
 	/**
 	 * Launch the application.
 	 */
@@ -33,27 +51,128 @@ public class frmConsultaClienteXApellidos extends JDialog {
 	 * Create the dialog.
 	 */
 	public frmConsultaClienteXApellidos() {
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 776, 354);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
+				okButton = new JButton("OK");
+				okButton.addActionListener(this);
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(this);
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
+			JScrollPane scrollPane = new JScrollPane();
+			scrollPane.setBounds(10, 80, 740, 224);
+			contentPanel.add(scrollPane);
+			
+			tblCliente = new JTable();
+			tblCliente.setModel(new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+					"ID", "NOMBRES", "DNI","DIRECCION", "SEXO"
+				}
+			));
+			tblCliente.getColumnModel().getColumn(0).setPreferredWidth(57);
+			tblCliente.getColumnModel().getColumn(1).setPreferredWidth(179);			
+			tblCliente.getColumnModel().getColumn(2).setPreferredWidth(88);
+			tblCliente.getColumnModel().getColumn(3).setPreferredWidth(200);
+			tblCliente.getColumnModel().getColumn(4).setPreferredWidth(98);
+			tblCliente.setFillsViewportHeight(true);
+			scrollPane.setViewportView(tblCliente);
+			
+			txtNombre = new JTextField();
+			txtNombre.setColumns(10);
+			txtNombre.setBounds(76, 41, 526, 20);
+			contentPanel.add(txtNombre);
+			
+			JLabel lblNombre = new JLabel("Nombre");
+			lblNombre.setBounds(10, 44, 59, 14);
+			contentPanel.add(lblNombre);
+			
+			btnBuscar = new JButton("Buscar");
+			btnBuscar.addActionListener(this);
+			btnBuscar.setBounds(629, 40, 121, 20);
+			contentPanel.add(btnBuscar);
+			listar();
+		}
+		
+	}
+	private void listar() {
+		ClienteModel model=new ClienteModel();
+		List<cliente> lstcliente=model.listaCliente();
+		DefaultTableModel dtm = (DefaultTableModel) tblCliente.getModel();
+		dtm.setRowCount(0);
+		Object[] fila = null; 
+		for (cliente x:lstcliente){
+			fila = new Object[] {x.getCodigo(), x.getNombres(),x.getDni(),x.getDireccion(),x.getSexo()};
+			dtm.addRow(fila);
+		}
+		}
+
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == okButton) {
+			actionPerformedOkButtonJButton(e);
+		}
+		if (e.getSource() == btnBuscar) {
+			actionPerformedBtnBuscarJButton(e);
+		}
+		if (e.getSource() == cancelButton) {
+			actionPerformedCancelButtonJButton(e);
 		}
 	}
+	protected void actionPerformedCancelButtonJButton(ActionEvent e) {
+		dispose();
+	}
+	protected void actionPerformedBtnBuscarJButton(ActionEvent e) {
+		
+		String nombre=txtNombre.getText();
+		
+		ClienteModel model=new ClienteModel();
+		List<cliente> lstcliente=model.listaporNombreApellido(nombre);
+		DefaultTableModel dtm = (DefaultTableModel) tblCliente.getModel();
+		dtm.setRowCount(0);
+		Object[] fila = null; 
+		for (cliente x:lstcliente){
+			fila = new Object[] {x.getCodigo(), x.getNombres(),x.getDni(),x.getDireccion(),x.getSexo()};
+			dtm.addRow(fila);
+		
+		}
+	}
+	protected void actionPerformedOkButtonJButton(ActionEvent e) {
+		int fila=tblCliente.getSelectedRow();
+		idSeleccionado=(Integer)tblCliente.getValueAt(fila, 0);
+		String nombre=(String)tblCliente.getValueAt(fila, 1);
+		String DNI=(String)tblCliente.getValueAt(fila, 2);
+		String direccion=(String)tblCliente.getValueAt(fila, 3);
+		String sexo=(String)tblCliente.getValueAt(fila, 4);
 
+
+
+		
+		System.out.println(idSeleccionado+" - "+nombre+" - "+nombre+" - "+DNI+" - "+direccion+" - "+sexo); 
+		
+		cliente c=new cliente();
+		c.setCodigo(idSeleccionado);
+		c.setNombres(nombre);
+		c.setDni(DNI);
+		c.setDireccion(direccion);
+		c.setSexo(sexo);
+		
+
+
+		 dispose();
+	}
 }

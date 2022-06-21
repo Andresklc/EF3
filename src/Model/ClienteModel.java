@@ -23,7 +23,7 @@ private static final Logger log = Logger.getLogger(UsuarioModel.class.getName())
 		ResultSet rs=null;
 		try {
 			conn = MySqlDBConexion.getConexion();
-			String sql="select idCliente,nombres,sexo,dni from cliente where nombres like ?";
+			String sql="select idCliente,nombres,sexo,dni,Direccion from cliente where nombres like ?";
 			pstm=conn.prepareCall(sql);
 			pstm.setString(1, "%"+nombre+"%");
 			log.info(">>>" + pstm);
@@ -34,6 +34,7 @@ private static final Logger log = Logger.getLogger(UsuarioModel.class.getName())
 				bean.setNombres(rs.getString(2));
 				bean.setSexo(rs.getString(3));
 				bean.setDni(rs.getString(4));
+				bean.setDireccion(rs.getString(5));
 				
 				data.add(bean);
 
@@ -59,7 +60,7 @@ private static final Logger log = Logger.getLogger(UsuarioModel.class.getName())
 		ResultSet rs = null; //Trae la data de la BD
 		try {
 			con = MySqlDBConexion.getConexion();
-			String sql ="select idCliente,nombres,sexo,dni from cliente";
+			String sql ="select idCliente,nombres,sexo,dni,Direccion from cliente";
 			pstm = con.prepareStatement(sql);
 			log.info(">>> " + pstm);
 			
@@ -73,6 +74,8 @@ private static final Logger log = Logger.getLogger(UsuarioModel.class.getName())
 				bean.setNombres(rs.getString(2));
 				bean.setSexo(rs.getString(3));
 				bean.setDni(rs.getString(4));
+				bean.setDireccion(rs.getString(5));
+				
 				
 				data.add(bean);
 

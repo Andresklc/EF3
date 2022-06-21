@@ -24,17 +24,16 @@ public class ArticuloModel {
 		ResultSet rs=null;
 		try {
 			conn = MySqlDBConexion.getConexion();
-			String sql="select idArticulo,nomArticulo,PrecioUnitario from Articulo where nomArticulo like ?";
+			String sql="select idArticulo,nomcat,nomArticulo,nomProveedor,CantArt,PrecioUnitario from Articulo inner join Categoria on Articulo.idCat=Categoria.idCat inner join proveedor on Articulo.idProveedor=proveedor.idProveedor where nomArticulo like ?";
 			pstm=conn.prepareCall(sql);
 			pstm.setString(1, "%"+nombre+"%");
 			log.info(">>>" + pstm);
 			rs=pstm.executeQuery();
 			while(rs.next()) {
-				articulo bean1=new articulo();
-				bean1.setCodigo(rs.getInt(1));
-				bean1.setNombre(rs.getString(2));
-				bean1.setPrecio(rs.getDouble(3));
-				data.add(bean1);
+				articulo bean=new articulo(rs.getString(4),rs.getString(2),rs.getInt(1),rs.getString(3),rs.getInt(5),rs.getDouble(6));
+				data.add(bean);
+
+				
 
 			}
 		} catch (SQLException e) {
@@ -58,7 +57,7 @@ public class ArticuloModel {
 		ResultSet rs = null; //Trae la data de la BD
 		try {
 			con = MySqlDBConexion.getConexion();
-			String sql ="select idArticulo,nomArticulo,PrecioUnitario from Articulo";
+			String sql ="select idArticulo,nomcat,nomArticulo,nomProveedor,CantArt,PrecioUnitario from Articulo inner join Categoria on Articulo.idCat=Categoria.idCat inner join proveedor on Articulo.idProveedor=proveedor.idProveedor";
 			pstm = con.prepareStatement(sql);
 			log.info(">>> " + pstm);
 			
@@ -68,11 +67,7 @@ public class ArticuloModel {
 			//Se pasa la data del rs al ArrayList(data)
 			articulo c = null;
 			while(rs.next()){
-				c = new articulo();
-				// Se colocan los campos de la base de datos
-				c.setCodigo(rs.getInt(1));
-				c.setNombre(rs.getString(2));
-				c.setPrecio(rs.getDouble(3));
+				c = new articulo(rs.getString(4),rs.getString(2),rs.getInt(1),rs.getString(3),rs.getInt(5),rs.getDouble(6));
 				
 				data.add(c);
 			}

@@ -1,6 +1,6 @@
 package Entidad;
 
-public class proveedor {
+public class proveedor  {
 	
 	private int codigo;
 	private String nombre;
@@ -8,6 +8,12 @@ public class proveedor {
 	private String telefono;
 	private String email;
 	
+	
+
+	public proveedor(String nombre) {
+		this.nombre = nombre;
+
+	}
 	public int getCodigo() {
 		return codigo;
 	}

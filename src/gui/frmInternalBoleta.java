@@ -26,8 +26,7 @@ import javax.swing.JScrollPane;
 
 import com.toedter.calendar.JDateChooser;
 import interfaces.frmConsultaArticuloxnombre;
-
-
+import interfaces.frmConsultaClienteXApellidos;
 
 import javax.swing.JInternalFrame;
 import java.awt.event.ActionListener;
@@ -43,6 +42,7 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener 
 
 
 	public frmConsultaArticuloxnombre frmConsultaArticuloxnombre = new frmConsultaArticuloxnombre();
+	public frmConsultaClienteXApellidos frmConsultaClienteXApellidos = new frmConsultaClienteXApellidos();
 	private JPanel contentPane;
 	private JLabel lblBoleta;
 	public static JTextField txtCodigoCliente;
@@ -315,7 +315,8 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener 
 		}
 	}
 	protected void actionPerformedBtnBuscarClienteJButton(ActionEvent e) {
-		
+		frmConsultaClienteXApellidos frm=new frmConsultaClienteXApellidos();
+			frm.setVisible(true);
 	}
 	protected void actionPerformedBtnBuscarArticuloJButton(ActionEvent e) {
 		frmConsultaArticuloxnombre frm=new frmConsultaArticuloxnombre();

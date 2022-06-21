@@ -93,11 +93,15 @@ public class frmConsultaArticulo extends JInternalFrame implements ActionListene
 					new Object[][] {
 					},
 					new String[] {
-						"C\u00D3DIGO", "NOMBRE", "precio"
+							"ID", "CATEGORIA", "NOMBRE","PROVEEDOR","CANTIDAD","PRECIO"
 					}
 				));
-				tblConceptos.getColumnModel().getColumn(0).setPreferredWidth(57);
-				tblConceptos.getColumnModel().getColumn(1).setPreferredWidth(489);
+				tblConceptos.getColumnModel().getColumn(0).setPreferredWidth(20);
+				tblConceptos.getColumnModel().getColumn(1).setPreferredWidth(60);
+				tblConceptos.getColumnModel().getColumn(2).setPreferredWidth(60);
+				tblConceptos.getColumnModel().getColumn(3).setPreferredWidth(90);
+				tblConceptos.getColumnModel().getColumn(4).setPreferredWidth(60);
+				tblConceptos.getColumnModel().getColumn(5).setPreferredWidth(60);
 				tblConceptos.setFillsViewportHeight(true);
 				scrollPane.setViewportView(tblConceptos);
 			}
@@ -120,7 +124,7 @@ public class frmConsultaArticulo extends JInternalFrame implements ActionListene
 		dtm.setRowCount(0);
 		Object[] fila = null; 
 		for (articulo x:lstArticulo){
-			fila = new Object[] {x.getCodigo(), x.getNombre(),x.getPrecio()};
+			fila = new Object[] {x.getCodArt(),x.getNomCat(), x.getNombArt(),x.getNombre(),x.getCantidad(),x.getPrecio()};
 			dtm.addRow(fila);
 		}
 		
@@ -132,7 +136,7 @@ public class frmConsultaArticulo extends JInternalFrame implements ActionListene
 		dtm.setRowCount(0);
 		Object[] fila = null; 
 		for (articulo x:lstArticulo){
-			fila = new Object[] {x.getCodigo(), x.getNombre(),x.getPrecio()};
+			fila = new Object[] {x.getCodArt(),x.getNomCat(), x.getNombArt(),x.getNombre(),x.getCantidad(),x.getPrecio()};
 			dtm.addRow(fila);
 		}
 	}

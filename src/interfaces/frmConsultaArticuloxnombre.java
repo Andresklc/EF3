@@ -33,6 +33,10 @@ public class frmConsultaArticuloxnombre extends JDialog implements ActionListene
 	private JTable tblConceptos;
 	private JScrollPane scrollPane;
 	private JButton okButton;
+	private int idSeleccionado = -1;
+	private JButton cancelButton;
+	private JButton btnBuscar;
+
 
 	/**
 	 * Launch the application.
@@ -68,7 +72,8 @@ public class frmConsultaArticuloxnombre extends JDialog implements ActionListene
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(this);
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
@@ -80,7 +85,7 @@ public class frmConsultaArticuloxnombre extends JDialog implements ActionListene
 			}
 			{
 				txtNombre = new JTextField();
-				txtNombre.setBounds(79, 33, 598, 20);
+				txtNombre.setBounds(79, 33, 486, 20);
 				contentPanel.add(txtNombre);
 				txtNombre.setColumns(10);
 			}
@@ -94,16 +99,27 @@ public class frmConsultaArticuloxnombre extends JDialog implements ActionListene
 						new Object[][] {
 						},
 						new String[] {
-							"C\u00D3DIGO", "NOMBRE", "precio"
+							"ID", "CATEGORIA", "NOMBRE","PROVEEDOR","CANTIDAD","PRECIO"
 						}
 					));
-					tblConceptos.getColumnModel().getColumn(0).setPreferredWidth(57);
-					tblConceptos.getColumnModel().getColumn(1).setPreferredWidth(489);
+					tblConceptos.getColumnModel().getColumn(0).setPreferredWidth(20);
+					tblConceptos.getColumnModel().getColumn(1).setPreferredWidth(60);
+					tblConceptos.getColumnModel().getColumn(2).setPreferredWidth(60);
+					tblConceptos.getColumnModel().getColumn(3).setPreferredWidth(90);
+					tblConceptos.getColumnModel().getColumn(4).setPreferredWidth(60);
+					tblConceptos.getColumnModel().getColumn(5).setPreferredWidth(60);
+				
+					
 					tblConceptos.setFillsViewportHeight(true);
 					scrollPane.setViewportView(tblConceptos);
 				}
 			}
 		}
+		
+		btnBuscar = new JButton("Buscar");
+		btnBuscar.addActionListener(this);
+		btnBuscar.setBounds(588, 32, 89, 23);
+		contentPanel.add(btnBuscar);
 		listar();
 	}
 	
@@ -114,16 +130,55 @@ public class frmConsultaArticuloxnombre extends JDialog implements ActionListene
 		dtm.setRowCount(0);
 		Object[] fila = null; 
 		for (articulo x:lstArticulo){
-			fila = new Object[] {x.getCodigo(), x.getNombre(),x.getPrecio()};
+			fila = new Object[] {x.getCodArt(),x.getNomCat(), x.getNombArt(),x.getNombre(),x.getCantidad(),x.getPrecio()};
 			dtm.addRow(fila);
 		}
 	}
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnBuscar) {
+			actionPerformedBtnBuscarJButton(e);
+		}
+		if (e.getSource() == cancelButton) {
+			actionPerformedCancelButtonJButton(e);
+		}
 		if (e.getSource() == okButton) {
 			actionPerformedOkButtonJButton(e);
 		}
 	}
 	protected void actionPerformedOkButtonJButton(ActionEvent e) {
+		int fila=tblConceptos.getSelectedRow();
+		idSeleccionado=(Integer)tblConceptos.getValueAt(fila, 0);
+		String categoria=(String)tblConceptos.getValueAt(fila, 1);
+		String nombre=(String)tblConceptos.getValueAt(fila, 2);
+		String proveedor=(String)tblConceptos.getValueAt(fila, 3);
+		int cantidad=(Integer)tblConceptos.getValueAt(fila, 4);
+		double precioU=(Double)tblConceptos.getValueAt(fila, 5);
+
+
 		
+		System.out.println(idSeleccionado+" - "+categoria+" - "+nombre+" - "+proveedor+" - "+cantidad+" - "+precioU); 
+		
+		new articulo(proveedor, proveedor, idSeleccionado, proveedor, cantidad, precioU);
+
+
+		 dispose();
+
+	}
+	protected void actionPerformedCancelButtonJButton(ActionEvent e) {
+		dispose();
+	}
+	protected void actionPerformedBtnBuscarJButton(ActionEvent e) {
+	String nombre=txtNombre.getText();
+		
+		ArticuloModel model=new ArticuloModel();
+		List<articulo> lstArticulo=model.listAllByNombre(nombre);
+		DefaultTableModel dtm = (DefaultTableModel) tblConceptos.getModel();
+		dtm.setRowCount(0);
+		Object[] fila = null; 
+		for (articulo x:lstArticulo){
+			fila = new Object[] {x.getCodArt(),x.getNomCat(), x.getNombArt(),x.getNombre(),x.getCantidad(),x.getPrecio()};
+			dtm.addRow(fila);
+		
+		}
 	}
 }
