@@ -25,6 +25,7 @@ import javax.swing.JScrollPane;
 
 
 import com.toedter.calendar.JDateChooser;
+
 import interfaces.frmConsultaArticuloxnombre;
 import interfaces.frmConsultaClienteXApellidos;
 
@@ -58,7 +59,7 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener 
 	private JButton btnBuscarArticulo;
 	private JLabel lblNombre;
 	private JLabel lblPrecio;
-	private JTextField txtCantidad;
+	public static JTextField txtCantidad;
 	private JLabel lblCantidad;
 	private JButton btnEliminar;
 	private JLabel lblTotal;
@@ -71,7 +72,7 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener 
 	private JScrollPane scrollPane;
 	private JDateChooser dcFecha;
 	private JButton btnNuevo;
-	private JTextField textField;
+	public static JTextField txtDireccion;
 	private JLabel lblDireccion;
 
 	
@@ -126,6 +127,7 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener 
 		panel.add(lblCdigo);
 		
 		txtCodigoCliente = new JTextField();
+		txtCodigoCliente.setEnabled(false);
 		txtCodigoCliente.setEditable(false);
 		txtCodigoCliente.setBounds(88, 35, 110, 20);
 		panel.add(txtCodigoCliente);
@@ -137,7 +139,6 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener 
 		panel.add(lblNombres);
 		
 		txtNombres = new JTextField();
-		txtNombres.setEditable(false);
 		txtNombres.setBounds(88, 71, 276, 20);
 		panel.add(txtNombres);
 		txtNombres.setColumns(10);
@@ -153,7 +154,6 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener 
 		panel.add(lblSexo);
 		
 		txtSexo = new JTextField();
-		txtSexo.setEditable(false);
 		txtSexo.setColumns(10);
 		txtSexo.setBounds(440, 71, 77, 20);
 		panel.add(txtSexo);
@@ -163,16 +163,14 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener 
 		panel.add(lblDni);
 		
 		txtDni = new JTextField();
-		txtDni.setEditable(false);
 		txtDni.setColumns(10);
 		txtDni.setBounds(574, 71, 141, 20);
 		panel.add(txtDni);
 		
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setColumns(10);
-		textField.setBounds(482, 35, 233, 20);
-		panel.add(textField);
+		txtDireccion = new JTextField();
+		txtDireccion.setColumns(10);
+		txtDireccion.setBounds(482, 35, 233, 20);
+		panel.add(txtDireccion);
 		
 		lblDireccion = new JLabel("Direcci\u00F3n:");
 		lblDireccion.setBounds(417, 38, 55, 14);
@@ -199,6 +197,8 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener 
 		panel_1.add(label);
 		
 		txtCodigoArticulo = new JTextField();
+		txtCodigoArticulo.setEnabled(false);
+		txtCodigoArticulo.setEditable(false);
 		txtCodigoArticulo.setColumns(10);
 		txtCodigoArticulo.setBounds(88, 24, 178, 20);
 		panel_1.add(txtCodigoArticulo);
@@ -317,6 +317,9 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener 
 	protected void actionPerformedBtnBuscarClienteJButton(ActionEvent e) {
 		frmConsultaClienteXApellidos frm=new frmConsultaClienteXApellidos();
 			frm.setVisible(true);
+			
+		
+			
 	}
 	protected void actionPerformedBtnBuscarArticuloJButton(ActionEvent e) {
 		frmConsultaArticuloxnombre frm=new frmConsultaArticuloxnombre();

@@ -79,6 +79,30 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 		
 		listaItemMenus.add(mntboleta);
 		
+		JMenu mnFormularios = new JMenu("Formulario");
+		menuBar.add(mnFormularios);
+		
+		JMenuItem mntFormularioCliente = new JMenuItem("Inscripcion Cliente");
+		mnFormularios.add(mntFormularioCliente);
+		
+		JMenuItem mntmActualizarCliente = new JMenuItem("Actualizar Cliente");
+		mnFormularios.add(mntmActualizarCliente);
+		
+		JMenu mnCrud = new JMenu("Mantenimiento");
+		menuBar.add(mnCrud);
+		
+		JMenuItem mntCrudArticulo = new JMenuItem("Articulos");
+		mnCrud.add(mntCrudArticulo);
+		
+		JMenuItem mntCrudCategoria = new JMenuItem("Categorias");
+		mnCrud.add(mntCrudCategoria);
+		
+		JMenuItem mntCrudUsuario = new JMenuItem("Usuarios");
+		mnCrud.add(mntCrudUsuario);
+		
+		JMenuItem mntCrudVentas = new JMenuItem("Ventas");
+		mnCrud.add(mntCrudVentas);
+		
 		JMenu mnConsulta = new JMenu("Consulta");
 		menuBar.add(mnConsulta);
 		
@@ -95,6 +119,15 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 		mntCliente.setVisible(true);
 		mntCliente.addActionListener(this);
 		mnConsulta.add(mntCliente);
+		
+		JMenu mnSistema = new JMenu("Sistema");
+		menuBar.add(mnSistema);
+		
+		JMenuItem mntInfo = new JMenuItem("Informacion del Sistema");
+		mnSistema.add(mntInfo);
+		
+		JMenuItem mntSalir = new JMenuItem("Salir");
+		mnSistema.add(mntSalir);
 		
 		frmConsultaCliente.setLocation(350, 234);
 		frmConsultaCliente.setMaximizable(false);

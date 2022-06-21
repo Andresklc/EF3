@@ -11,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Entidad.articulo;
 import Model.ArticuloModel;
+import gui.frmInternalBoleta;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -158,9 +159,12 @@ public class frmConsultaArticuloxnombre extends JDialog implements ActionListene
 		
 		System.out.println(idSeleccionado+" - "+categoria+" - "+nombre+" - "+proveedor+" - "+cantidad+" - "+precioU); 
 		
-		new articulo(proveedor, proveedor, idSeleccionado, proveedor, cantidad, precioU);
+		frmInternalBoleta.txtCodigoArticulo.setText(String.valueOf(idSeleccionado));
+		frmInternalBoleta.txtNombreArticulo.setText(nombre);
+		frmInternalBoleta.txtPrecio.setText(String.valueOf(precioU));
+		frmInternalBoleta.txtCantidad.setText(String.valueOf(cantidad));
 
-
+		
 		 dispose();
 
 	}

@@ -16,6 +16,8 @@ import javax.swing.table.DefaultTableModel;
 
 import Entidad.cliente;
 import Model.ClienteModel;
+import gui.frmInternalBoleta;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -164,13 +166,11 @@ public class frmConsultaClienteXApellidos extends JDialog implements ActionListe
 		
 		System.out.println(idSeleccionado+" - "+nombre+" - "+nombre+" - "+DNI+" - "+direccion+" - "+sexo); 
 		
-		cliente c=new cliente();
-		c.setCodigo(idSeleccionado);
-		c.setNombres(nombre);
-		c.setDni(DNI);
-		c.setDireccion(direccion);
-		c.setSexo(sexo);
-		
+		frmInternalBoleta.txtCodigoCliente.setText(String.valueOf(idSeleccionado));
+		frmInternalBoleta.txtNombres.setText(nombre);
+		frmInternalBoleta.txtDireccion.setText(direccion);
+		frmInternalBoleta.txtSexo.setText(sexo);
+		frmInternalBoleta.txtDni.setText(DNI);
 
 
 		 dispose();
