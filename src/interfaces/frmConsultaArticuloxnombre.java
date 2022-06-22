@@ -162,7 +162,7 @@ public class frmConsultaArticuloxnombre extends JDialog implements ActionListene
 		frmInternalBoleta.txtCodigoArticulo.setText(String.valueOf(idSeleccionado));
 		frmInternalBoleta.txtNombreArticulo.setText(nombre);
 		frmInternalBoleta.txtPrecio.setText(String.valueOf(precioU));
-		frmInternalBoleta.txtCantidad.setText(String.valueOf(cantidad));
+
 
 		
 		 dispose();

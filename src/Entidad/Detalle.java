@@ -1,20 +1,16 @@
 package Entidad;
 
-public class Detalle {
-	private int numeroBoleta,codigoConcepto,cantidad;
+public class Detalle  {
+	private int Codart,cantidad;
 	private double precio;
 	
-	public int getNumeroBoleta() {
-		return numeroBoleta;
-	}
-	public void setNumeroBoleta(int numeroBoleta) {
-		this.numeroBoleta = numeroBoleta;
-	}
+	
+	
 	public int getCodigoConcepto() {
-		return codigoConcepto;
+		return Codart;
 	}
 	public void setCodigoConcepto(int codigoConcepto) {
-		this.codigoConcepto = codigoConcepto;
+		this.Codart = codigoConcepto;
 	}
 	public int getCantidad() {
 		return cantidad;

@@ -33,6 +33,7 @@ public class frmConsultaCliente  extends JInternalFrame implements ActionListene
 	private JButton btnEnviar;
 	private JTable tblCliente;
 	private JTextField txtNombre;
+	private JTextField txtApellidos;
 
 	/**
 	 * Launch the application.
@@ -78,24 +79,34 @@ public class frmConsultaCliente  extends JInternalFrame implements ActionListene
 			new Object[][] {
 			},
 			new String[] {
-				"C\u00D3DIGO", "NOMBRES", "DNI", "SEXO"
+				"C\u00D3DIGO", "NOMBRES","APELLIDOS", "DNI", "SEXO"
 			}
 		));
 		tblCliente.getColumnModel().getColumn(0).setPreferredWidth(57);
 		tblCliente.getColumnModel().getColumn(1).setPreferredWidth(179);
-		tblCliente.getColumnModel().getColumn(2).setPreferredWidth(88);
-		tblCliente.getColumnModel().getColumn(3).setPreferredWidth(98);
+		tblCliente.getColumnModel().getColumn(2).setPreferredWidth(179);
+		tblCliente.getColumnModel().getColumn(3).setPreferredWidth(88);
+		tblCliente.getColumnModel().getColumn(4).setPreferredWidth(98);
 		tblCliente.setFillsViewportHeight(true);
 		scrollPane.setViewportView(tblCliente);
 		
 		txtNombre = new JTextField();
 		txtNombre.setColumns(10);
-		txtNombre.setBounds(76, 41, 480, 20);
+		txtNombre.setBounds(76, 41, 230, 20);
 		contentPane.add(txtNombre);
 		
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setBounds(10, 44, 59, 14);
 		contentPane.add(lblNombre);
+		
+		JLabel lblApelllido = new JLabel("Apelllido");
+		lblApelllido.setBounds(316, 44, 59, 14);
+		contentPane.add(lblApelllido);
+		
+		txtApellidos = new JTextField();
+		txtApellidos.setColumns(10);
+		txtApellidos.setBounds(366, 41, 230, 20);
+		contentPane.add(txtApellidos);
 	
 		listar();
 	}
@@ -108,14 +119,15 @@ public class frmConsultaCliente  extends JInternalFrame implements ActionListene
 	}
 	protected void actionPerformedBtnEnviarJButton(ActionEvent e) {
 		String nombre=txtNombre.getText();
+		String apellidos=txtApellidos.getText();
 		
 		ClienteModel model=new ClienteModel();
-		List<cliente> lstcliente=model.listaporNombreApellido(nombre);
+		List<cliente> lstcliente=model.listaporNombreApellido(nombre,apellidos);
 		DefaultTableModel dtm = (DefaultTableModel) tblCliente.getModel();
 		dtm.setRowCount(0);
 		Object[] fila = null; 
 		for (cliente x:lstcliente){
-			fila = new Object[] {x.getCodigo(), x.getNombres(),x.getDni(),x.getSexo()};
+			fila = new Object[] {x.getCodigo(), x.getNombres(),x.getApellidos(),x.getDni(),x.getDireccion(),x.getSexo()};
 			dtm.addRow(fila);
 		}
 		
@@ -127,7 +139,7 @@ public class frmConsultaCliente  extends JInternalFrame implements ActionListene
 		dtm.setRowCount(0);
 		Object[] fila = null; 
 		for (cliente x:lstcliente){
-			fila = new Object[] {x.getCodigo(), x.getNombres(),x.getDni(),x.getSexo()};
+			fila = new Object[] {x.getCodigo(), x.getNombres(),x.getApellidos(),x.getDni(),x.getDireccion(),x.getSexo()};
 			dtm.addRow(fila);
 		}
 		}

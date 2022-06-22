@@ -2,7 +2,11 @@ package Entidad;
 
 public class cliente {
 	private int codigo;
-	private String nombres,direccion,dni,sexo;
+	private String nombres,apellidos,direccion,dni,sexo;
+	
+	
+
+	
 
 	public int getCodigo() {
 		return codigo;
@@ -45,6 +49,14 @@ public class cliente {
 
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
+	}
+
+	public String getApellidos() {
+		return apellidos;
+	}
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
 	}
 	
 
