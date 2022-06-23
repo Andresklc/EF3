@@ -17,6 +17,10 @@ import Model.UsuarioModel;
 import Util.DatosGlobales;
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.JPanel;
+import java.awt.SystemColor;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class FrmLogin extends JDialog implements ActionListener {
@@ -28,6 +32,7 @@ public class FrmLogin extends JDialog implements ActionListener {
 	private UsuarioModel model = new UsuarioModel();
 
 	public FrmPrincipal frm;
+	private JLabel lblIcon;
 
 	//
 	public FrmLogin(FrmPrincipal frm) {
@@ -35,45 +40,60 @@ public class FrmLogin extends JDialog implements ActionListener {
 		this.frm = frm;
 
 		getContentPane().setLayout(null);
-		this.setSize(500, 300);
+		this.setSize(534, 639);
 		this.setLocationRelativeTo(null);
 		this.setTitle("Sistema de Venta de Ropa");
-
-		lblLogin = new JLabel("Username:");
-		lblLogin.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblLogin.setForeground(new Color(255, 255, 255));
-		lblLogin.setBounds(121, 62, 100, 25);
-		getContentPane().add(lblLogin);
-
-		txtLogin = new JTextField("luis");
-		txtLogin.setBackground(new Color(47, 79, 79));
-		txtLogin.setBounds(236, 62, 144, 25);
-		txtLogin.addActionListener(this);
-		getContentPane().add(txtLogin);
-
-		lblClave = new JLabel("Password:");
-		lblClave.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblClave.setForeground(new Color(255, 255, 255));
-		lblClave.setBounds(121, 94, 100, 25);
-		getContentPane().add(lblClave);
-
-		txtClave = new JPasswordField("luis");
-		txtClave.setBackground(new Color(47, 79, 79));
-		txtClave.addActionListener(this);
-		txtClave.setBounds(236, 94, 144, 25);
-		getContentPane().add(txtClave);
-
-		btnEnviar = new JButton("Enviar");
-		btnEnviar.setBackground(Color.WHITE);
-		btnEnviar.addActionListener(this);
-		btnEnviar.setBounds(101, 143, 300, 25);
-		getContentPane().add(btnEnviar);
-
-		btnLimpiar = new JButton("Limpiar");
-		btnLimpiar.setBackground(Color.WHITE);
-		btnLimpiar.addActionListener(this);
-		btnLimpiar.setBounds(201, 172, 100, 25);
-		getContentPane().add(btnLimpiar);
+		
+		JPanel panelLogin = new JPanel();
+		panelLogin.setBackground(new Color(102, 153, 102));
+		panelLogin.setBounds(33, 313, 454, 279);
+		getContentPane().add(panelLogin);
+		panelLogin.setLayout(null);
+		
+				btnEnviar = new JButton("Enviar");
+				btnEnviar.setFont(new Font("Tahoma", Font.PLAIN, 20));
+				btnEnviar.setBounds(73, 170, 300, 40);
+				panelLogin.add(btnEnviar);
+				btnEnviar.setBackground(SystemColor.activeCaption);
+				
+						btnLimpiar = new JButton("Limpiar");
+						btnLimpiar.setFont(new Font("Tahoma", Font.PLAIN, 15));
+						btnLimpiar.setBounds(172, 220, 100, 38);
+						panelLogin.add(btnLimpiar);
+						btnLimpiar.setBackground(SystemColor.activeCaption);
+						
+								lblLogin = new JLabel("Username:");
+								lblLogin.setBounds(38, 32, 100, 25);
+								panelLogin.add(lblLogin);
+								lblLogin.setFont(new Font("Tahoma", Font.BOLD, 12));
+								lblLogin.setForeground(Color.BLACK);
+								
+										txtLogin = new JTextField("luis");
+										txtLogin.setForeground(SystemColor.desktop);
+										txtLogin.setBounds(142, 60, 144, 32);
+										panelLogin.add(txtLogin);
+										txtLogin.setBackground(SystemColor.scrollbar);
+										
+												lblClave = new JLabel("Password:");
+												lblClave.setBounds(38, 91, 100, 25);
+												panelLogin.add(lblClave);
+												lblClave.setFont(new Font("Tahoma", Font.BOLD, 12));
+												lblClave.setForeground(Color.BLACK);
+												
+														txtClave = new JPasswordField("luis");
+														txtClave.setBounds(142, 117, 144, 32);
+														panelLogin.add(txtClave);
+														txtClave.setBackground(SystemColor.scrollbar);
+														
+														lblIcon = new JLabel("");
+														lblIcon.setIcon(new ImageIcon(FrmLogin.class.getResource("/iconos/pngegg1.2.png")));
+														lblIcon.setIconTextGap(6);
+														lblIcon.setBounds(104, 10, 300, 300);
+														getContentPane().add(lblIcon);
+														txtClave.addActionListener(this);
+										txtLogin.addActionListener(this);
+						btnLimpiar.addActionListener(this);
+				btnEnviar.addActionListener(this);
 
 		setVisible(true);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -111,5 +131,4 @@ public class FrmLogin extends JDialog implements ActionListener {
 
 	public void windowDeactivated(WindowEvent e) {
 	}
-
 }
