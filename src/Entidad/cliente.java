@@ -1,12 +1,23 @@
 package Entidad;
 
+import java.sql.Date;
+
 public class cliente {
 	private int codigo;
 	private String nombres,apellidos,direccion,dni,sexo;
+	private Date fechaI;
 	
 	
 
 	
+
+	public Date getFechaI() {
+		return fechaI;
+	}
+
+	public void setFechaI(Date fechaI) {
+		this.fechaI = fechaI;
+	}
 
 	public int getCodigo() {
 		return codigo;

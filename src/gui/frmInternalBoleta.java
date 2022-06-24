@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import java.awt.Font;
 
@@ -13,14 +14,22 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
+
 import Entidad.Ventas;
+import Entidad.articuloSolo;
+import Entidad.cliente;
+import Model.ClienteModel;
 import Model.VentaModel;
+import Util.Validaciones;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 
 import javax.swing.JTable;
@@ -31,14 +40,17 @@ import javax.swing.JScrollPane;
 import interfaces.frmConsultaArticuloxnombre;
 import interfaces.frmConsultaClienteXApellidos;
 
+
 import javax.swing.JInternalFrame;
 import java.awt.event.ActionListener;
-import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
-import javax.swing.JComboBox;
+import javax.swing.JRadioButton;
+import java.awt.event.MouseListener;
+import java.util.List;
+import java.awt.event.MouseEvent;
 
-public class frmInternalBoleta extends JInternalFrame implements ActionListener {
+public class frmInternalBoleta extends JInternalFrame implements ActionListener, MouseListener {
 
 	/**
 	 * 
@@ -52,7 +64,6 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener 
 	private JLabel lblBoleta;
 	public static JTextField txtCodigoCliente;
 	public static JTextField txtNombres;
-	public static JTextField txtSexo;
 	public static JTextField txtDni;
 	private JButton btnBuscarCliente;
 	private JPanel panel_1;
@@ -66,19 +77,23 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener 
 	public static JTextField txtCantidad;
 	private JLabel lblCantidad;
 	private JButton btnEliminar;
-	private JLabel lblTotal;
-	private JTextField txtTotal;
 	private JButton btnGrabar;
 	private JTable tblDetalle;
 	private JScrollPane scrollPane;
-	private JButton btnNuevo;
 	public static JTextField txtDireccion;
 	private JLabel lblDireccion;
 	private JLabel lblApellido;
 	public static JTextField txtApellido;
 	private JButton btnEliminar_1;
-	private JComboBox<String> cboEstado;
-
+	private JButton btnAdicionarCliente;
+	public static JRadioButton rdbtnMasculino;
+	public static JRadioButton rdbtnFemenino;
+	private ButtonGroup grupo1;
+	private int idSeleccionado = -1;
+	private JButton btnBoleta;
+	public static JLabel lbliDUsuario;
+	public static JLabel lblUsuario;
+	
 	
 
 	/**
@@ -101,10 +116,11 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener 
 	 * Create the frame.
 	 */
 	public frmInternalBoleta() {
+		setTitle("Creador de Boleta");
 		setClosable(true);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setIconifiable(true);
-		setBounds(100, 100, 800, 590);
+		setBounds(100, 100, 667, 619);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -116,12 +132,12 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener 
 		lblBoleta.setBackground(Color.BLACK);
 		lblBoleta.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBoleta.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblBoleta.setBounds(0, 22, 823, 47);
+		lblBoleta.setBounds(0, 22, 667, 47);
 		contentPane.add(lblBoleta);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Datos del Cliente", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel.setBounds(10, 80, 736, 106);
+		panel.setBounds(10, 80, 631, 147);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -130,6 +146,7 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener 
 		panel.add(lblCdigo);
 		
 		txtCodigoCliente = new JTextField();
+		txtCodigoCliente.addActionListener(this);
 		txtCodigoCliente.setEnabled(false);
 		txtCodigoCliente.setEditable(false);
 		txtCodigoCliente.setBounds(88, 35, 110, 20);
@@ -142,7 +159,7 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener 
 		panel.add(lblNombres);
 		
 		txtNombres = new JTextField();
-		txtNombres.setBounds(88, 71, 141, 20);
+		txtNombres.setBounds(88, 71, 117, 20);
 		panel.add(txtNombres);
 		txtNombres.setColumns(10);
 		
@@ -152,34 +169,26 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener 
 		btnBuscarCliente.setBounds(208, 21, 55, 36);
 		panel.add(btnBuscarCliente);
 		
-		JLabel lblSexo = new JLabel("Sexo:");
-		lblSexo.setBounds(417, 74, 55, 14);
-		panel.add(lblSexo);
-		
-		txtSexo = new JTextField();
-		txtSexo.setColumns(10);
-		txtSexo.setBounds(475, 71, 77, 20);
-		panel.add(txtSexo);
-		
 		JLabel lblDni = new JLabel("DNI:");
-		lblDni.setBounds(562, 74, 55, 14);
+		lblDni.setBounds(409, 77, 55, 14);
 		panel.add(lblDni);
 		
 		txtDni = new JTextField();
 		txtDni.setColumns(10);
-		txtDni.setBounds(605, 71, 110, 20);
+		txtDni.setBounds(452, 74, 110, 20);
 		panel.add(txtDni);
 		
 		txtDireccion = new JTextField();
 		txtDireccion.setColumns(10);
-		txtDireccion.setBounds(482, 35, 233, 20);
+		txtDireccion.setBounds(88, 104, 305, 20);
 		panel.add(txtDireccion);
 		
 		lblDireccion = new JLabel("Direcci\u00F3n:");
-		lblDireccion.setBounds(417, 38, 55, 14);
+		lblDireccion.setBounds(10, 107, 55, 14);
 		panel.add(lblDireccion);
 		
-		JButton btnAdicionarCliente = new JButton("");
+		btnAdicionarCliente = new JButton("");
+		btnAdicionarCliente.addActionListener(this);
 		btnAdicionarCliente.setIcon(new ImageIcon(frmInternalBoleta.class.getResource("/iconos/Add.gif")));
 		btnAdicionarCliente.setBounds(273, 21, 55, 36);
 		panel.add(btnAdicionarCliente);
@@ -191,17 +200,34 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener 
 		btnEliminar.setIcon(new ImageIcon(frmInternalBoleta.class.getResource("/iconos/Delete.gif")));
 		
 		lblApellido = new JLabel("Apellido:");
-		lblApellido.setBounds(239, 74, 77, 14);
+		lblApellido.setBounds(215, 74, 77, 14);
 		panel.add(lblApellido);
 		
 		txtApellido = new JTextField();
 		txtApellido.setColumns(10);
-		txtApellido.setBounds(297, 71, 110, 20);
+		txtApellido.setBounds(264, 71, 129, 20);
 		panel.add(txtApellido);
+		
+		JLabel lblGener = new JLabel("Genero:");
+		lblGener.setBounds(419, 33, 55, 14);
+		panel.add(lblGener);
+		
+		rdbtnMasculino = new JRadioButton("Masculino");
+		rdbtnMasculino.setBounds(480, 29, 89, 23);
+		panel.add(rdbtnMasculino);
+		
+		rdbtnFemenino = new JRadioButton("Femenino");
+		rdbtnFemenino.setBounds(480, 47, 89, 23);
+		panel.add(rdbtnFemenino);
+		
+		grupo1 = new ButtonGroup();
+		grupo1.add(rdbtnFemenino);
+		grupo1.add(rdbtnMasculino);
+
 		
 		panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Datos del Articulo", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_1.setBounds(10, 197, 551, 90);
+		panel_1.setBounds(10, 279, 568, 90);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -219,7 +245,7 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener 
 		btnBuscarArticulo = new JButton("");
 		btnBuscarArticulo.addActionListener(this);
 		btnBuscarArticulo.setIcon(new ImageIcon(frmInternalBoleta.class.getResource("/iconos/Search.gif")));
-		btnBuscarArticulo.setBounds(275, 11, 89, 33);
+		btnBuscarArticulo.setBounds(330, 11, 89, 33);
 		panel_1.add(btnBuscarArticulo);
 		
 		lblNombre = new JLabel("Nombre:");
@@ -241,85 +267,93 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener 
 		txtPrecio.setEnabled(false);
 		txtPrecio.setEditable(false);
 		txtPrecio.setColumns(10);
-		txtPrecio.setBounds(430, 60, 110, 20);
+		txtPrecio.setBounds(430, 60, 128, 20);
 		panel_1.add(txtPrecio);
 		
 		btnEliminar_1 = new JButton("");
 		btnEliminar_1.addActionListener(this);
 		btnEliminar_1.setIcon(new ImageIcon(frmInternalBoleta.class.getResource("/iconos/Delete.gif")));
-		btnEliminar_1.setBounds(374, 11, 89, 33);
+		btnEliminar_1.setBounds(450, 11, 89, 33);
 		panel_1.add(btnEliminar_1);
-
 		
-		lblTotal = new JLabel("Total:");
-		lblTotal.setBounds(586, 519, 46, 14);
-		contentPane.add(lblTotal);
-		
-		txtTotal = new JTextField();
-		txtTotal.setEditable(false);
-		txtTotal.setColumns(10);
-		txtTotal.setBounds(629, 516, 110, 20);
-		contentPane.add(txtTotal);
-		
-		btnGrabar = new JButton("");
-		btnGrabar.setIcon(new ImageIcon(frmInternalBoleta.class.getResource("/iconos/Save.gif")));
-		btnGrabar.setBounds(119, 500, 89, 46);
+		btnGrabar = new JButton("Agregar a boleta");
+		btnGrabar.addActionListener(this);
+		btnGrabar.setIcon(null);
+		btnGrabar.setBounds(10, 380, 175, 20);
 		contentPane.add(btnGrabar);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 298, 750, 191);
+		scrollPane.setBounds(10, 406, 631, 168);
 		contentPane.add(scrollPane);
 		
 		tblDetalle = new JTable();
+		tblDetalle.addMouseListener(this);
 		tblDetalle.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
-				"ID","CLIENTE","USUARIO","ARTICULO", "CANTIDAD", "IMPORTE","FECHA VENTA","ESTADO"
+				"ID","ARTICULO", "CANTIDAD", "IMPORTE"
 			}
 		));
 		tblDetalle.getColumnModel().getColumn(0).setPreferredWidth(60);
 		tblDetalle.getColumnModel().getColumn(1).setPreferredWidth(200);
-		tblDetalle.getColumnModel().getColumn(2).setPreferredWidth(200);
-		tblDetalle.getColumnModel().getColumn(3).setPreferredWidth(200);
-		tblDetalle.getColumnModel().getColumn(4).setPreferredWidth(100);
-		tblDetalle.getColumnModel().getColumn(5).setPreferredWidth(100);
-		tblDetalle.getColumnModel().getColumn(6).setPreferredWidth(200);
-		tblDetalle.getColumnModel().getColumn(7).setPreferredWidth(70);
+		tblDetalle.getColumnModel().getColumn(2).setPreferredWidth(100);
+		tblDetalle.getColumnModel().getColumn(3).setPreferredWidth(100);
+
+
 		tblDetalle.setFillsViewportHeight(true);
 		scrollPane.setViewportView(tblDetalle);
 		
-		btnNuevo = new JButton("");
-
-		btnNuevo.setIcon(new ImageIcon(frmInternalBoleta.class.getResource("/iconos/Text.gif")));
-		btnNuevo.setBounds(10, 502, 89, 46);
-		contentPane.add(btnNuevo);
-		
 		lblCantidad = new JLabel("Cantidad:");
-		lblCantidad.setBounds(573, 215, 77, 14);
+		lblCantidad.setBounds(588, 290, 53, 14);
 		contentPane.add(lblCantidad);
 		
 		txtCantidad = new JTextField();
 		txtCantidad.addActionListener(this);
-		txtCantidad.setBounds(636, 212, 110, 20);
+		txtCantidad.setBounds(588, 310, 46, 20);
 		contentPane.add(txtCantidad);
 		txtCantidad.setText("1");
 		txtCantidad.setColumns(10);
 		
-		cboEstado = new JComboBox<String>();
-		cboEstado.setBounds(629, 243, 120, 20);
-		contentPane.add(cboEstado);
+		btnBoleta = new JButton("Generar Boleta");
+		btnBoleta.addActionListener(this);
+		btnBoleta.setEnabled(false);
+		btnBoleta.setBounds(20, 238, 216, 30);
+		contentPane.add(btnBoleta);
 		
-		JLabel lblEstado = new JLabel("Estado:");
-		lblEstado.setBounds(573, 246, 77, 14);
-		contentPane.add(lblEstado);
+		lbliDUsuario = new JLabel("");
+		lbliDUsuario.setBounds(692, 227, 46, 14);
+		contentPane.add(lbliDUsuario);
 		
-		listar() ;
+		 lblUsuario = new JLabel("");
+		lblUsuario.setBounds(702, 254, 36, 14);
+		contentPane.add(lblUsuario);
+		
+		JButton btnEliminarDeBoleta = new JButton("Eliminar de boleta");
+		btnEliminarDeBoleta.setBounds(236, 380, 184, 20);
+		contentPane.add(btnEliminarDeBoleta);
+		
+		JButton btnImprimirBoleta = new JButton("Imprimir Boleta");
+		btnImprimirBoleta.setBounds(474, 380, 167, 20);
+		contentPane.add(btnImprimirBoleta);
+		
+		tamano_defecto();
+	}
+	public void mensaje(String ms){
+		JOptionPane.showMessageDialog(this, ms);
 	}
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == txtCantidad) {
-			actionPerformedTxtCantidadJTextField(e);
+		if (e.getSource() == btnGrabar) {
+			actionPerformedBtnGrabarJButton(e);
 		}
+		if (e.getSource() == btnBoleta) {
+			actionPerformedBtnBoletaJButton(e);
+		}
+		
+		if (e.getSource() == btnAdicionarCliente) {
+			actionPerformedBtnAdicionarClienteJButton(e);
+		}
+
 		if (e.getSource() == btnEliminar_1) {
 			actionPerformedBtnEliminar_1JButton(e);
 		}
@@ -337,6 +371,8 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener 
 		frmConsultaClienteXApellidos frm=new frmConsultaClienteXApellidos();
 			frm.setVisible(true);
 			
+			habilita_boton();
+			
 		
 			
 	}
@@ -346,34 +382,141 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener 
 
 	}
 	
-	public void listar() {
-		VentaModel model=new VentaModel();
-		List<Ventas> lstVenta=model.listaVenta();
-		DefaultTableModel dtm = (DefaultTableModel) tblDetalle.getModel();
-		dtm.setRowCount(0);
-		Object[] fila = null; 
-		for (Ventas x:lstVenta){
-			fila = new Object[] {x.getCodVen(),x.getNomcli(),x.getNomU(),x.getArt(),x.getCantida(),x.getMontoVen(),x.getFechVen(),x.getEstVen()};
-			dtm.addRow(fila);
-	}
-}
+	
 	protected void actionPerformedBtnEliminarJButton(ActionEvent e) {
 		txtCodigoCliente.setText("");
 		txtNombres.setText("");
 		txtApellido.setText("");
 		txtDireccion.setText("");
-		txtSexo.setText("");
+		grupo1.clearSelection();
 		txtDni.setText("");
+		vaciar();
+		tamano_defecto();
 	}
 	protected void actionPerformedBtnEliminar_1JButton(ActionEvent e) {
 		txtCodigoArticulo.setText("");
 		txtNombreArticulo.setText("");
 		txtPrecio.setText("");
 	}
-	protected void actionPerformedTxtCantidadJTextField(ActionEvent e) {
 
-	}
 	
-
+	
 		
+	protected void actionPerformedBtnAdicionarClienteJButton(ActionEvent e) {
+		String nom=txtNombres.getText();
+		String ape=txtApellido.getText();
+		String dni=txtDni.getText();
+		String dir=txtDireccion.getText();
+		String sex="";
+		if(rdbtnMasculino.isSelected()==true) {
+		sex="M";}else if(rdbtnFemenino.isSelected()==true){sex="F";}else {mensaje("Selecciona tu genero");}
+		
+		if(!nom.matches(Validaciones.TEXTO)) {
+			mensaje("El Nombre es de 2 a 20 Caracteres");
+		}else if(!ape.matches(Validaciones.TEXTO)) {
+			mensaje("El Apellido es de 2 a 20 Caracteres");
+		}else if(!dni.matches(Validaciones.DNI)) {
+			mensaje("El DNI debe tener 8 digitos");
+		}else if(!dir.matches(Validaciones.DIRECCION)) {
+			mensaje("La direccion contiene de 2 a 30 caracteres ");
+		}else {
+			cliente obj=new cliente();
+			obj.setNombres(nom);
+			obj.setApellidos(ape);
+			obj.setDni(dni);
+			obj.setDireccion(dir);
+			obj.setSexo(sex);
+
+			
+			ClienteModel model=new ClienteModel();
+			int salida=model.insertaCliente(obj);
+			if(salida>0) {
+				mensaje("Registro Exitoso");
+			}else {
+				mensaje("Error en el Registro");
+			}
+			txtCodigoCliente.setText("");
+			txtNombres.setText("");
+			txtApellido.setText("");
+			txtDireccion.setText("");
+			 grupo1.clearSelection();
+			txtDni.setText("");
+			
+		}
+	}
+	public void mouseClicked(MouseEvent e) {
+		if (e.getSource() == tblDetalle) {
+			mouseClickedTblDetalleJTable(e);
+		}
+	}
+	public void mouseEntered(MouseEvent e) {
+	}
+	public void mouseExited(MouseEvent e) {
+	}
+	public void mousePressed(MouseEvent e) {
+	}
+	public void mouseReleased(MouseEvent e) {
+	}
+	protected void mouseClickedTblDetalleJTable(MouseEvent e) {
+		int fila=tblDetalle.getSelectedRow();
+		idSeleccionado=(Integer)tblDetalle.getValueAt(fila, 0);	
+		String nomAr=(String)tblDetalle.getValueAt(fila, 1);
+		int can=(Integer)tblDetalle.getValueAt(fila, 2);
+		double imp=(Double)tblDetalle.getValueAt(fila, 3);
+		
+		
+		System.out.println(idSeleccionado+" - "+nomAr+" - "+can+" - "+imp); 
+	}
+	private void habilita_boton() {
+		if(txtCodigoArticulo.getText()!="") {
+		btnBoleta.setEnabled(true);}else {
+			btnBoleta.setEnabled(false);
+		}
+	}
+	private void vaciar(){
+		btnBoleta.setEnabled(false);
+		
+	}
+	private void tamano_defecto(){this.setSize(new Dimension(668, 310));}
+	private void tamano_abierto(){this.setSize(new Dimension(667, 619));
+	}
+	protected void actionPerformedBtnBoletaJButton(ActionEvent e) {
+		tamano_abierto();
+		vaciar();
+		Ventas v=new Ventas();
+		v.setCodUs(Integer.parseInt(lbliDUsuario.getText()));
+		v.setCodCl(Integer.parseInt(txtCodigoCliente.getText()));
+		VentaModel vm=new VentaModel();
+		int salida=vm.insertaVentas(v);
+		if(salida>0) {
+			mensaje("Boleta generada");
+		}else {
+			mensaje("Error al generar la boleta");
+		}
+		
+	}
+	protected void actionPerformedBtnGrabarJButton(ActionEvent e) {
+		articuloSolo A=new articuloSolo();
+		A.setCodArt(Integer.parseInt(txtCodigoArticulo.getText()));
+		A.setCantidad(Integer.parseInt(txtCantidad.getText()));
+		double calculador=(Double.parseDouble(txtPrecio.getText())*Integer.parseInt(txtCantidad.getText()));
+		A.setPrecio(calculador);
+		VentaModel vm=new VentaModel();
+		int salida=vm.insertaDetalleVenta(A);
+		if(salida>0) {
+			System.out.println ("Ingreso un producto");
+		}else {
+			System.out.println ("Error al ingresar producto");
+		}
+		
+		List<Ventas> lstVentas=vm.listaVenta(Integer.parseInt(txtCodigoCliente.getText()));
+		DefaultTableModel dtm = (DefaultTableModel) tblDetalle.getModel();
+		dtm.setRowCount(0);
+		Object[] fila = null; 
+		for (Ventas x:lstVentas){
+			fila = new Object[] {x.getCodVen(), x.getArt(),x.getCantida(),x.getMontoVen()};
+			dtm.addRow(fila);
+		}
+		
+	}
 }

@@ -15,6 +15,8 @@ import javax.swing.JTextField;
 import Entidad.Usuario;
 import Model.UsuarioModel;
 import Util.DatosGlobales;
+import gui.frmInternalBoleta;
+
 import java.awt.Color;
 import java.awt.Font;
 
@@ -87,12 +89,15 @@ public class FrmLogin extends JDialog implements ActionListener {
 			String clave = new String(txtClave.getPassword());
 
 			Usuario bean = model.valida(login, clave);
-
+			
 			if (bean != null) {
 				
 				DatosGlobales.ID_USUARIO = bean.getIdUsuario();
 				frm.setVisible(true);
 				this.setVisible(false);
+
+				frmInternalBoleta.lbliDUsuario.setText(String.valueOf(bean.getIdUsuario()));
+				frmInternalBoleta.lblUsuario.setText(login);
 
 			} else {
 				JOptionPane.showMessageDialog(this, "Usuario no valido");

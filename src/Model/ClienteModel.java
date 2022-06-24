@@ -23,7 +23,7 @@ private static final Logger log = Logger.getLogger(ClienteModel.class.getName())
 		ResultSet rs=null;
 		try {
 			conn = MySqlDBConexion.getConexion();
-			String sql="select idCliente,nombres,apellidos,sexo,dni,Direccion from cliente where (nombres like ?) and (apellidos like ?)";
+			String sql="select idCliente,nombres,apellidos,sexo,dni,Direccion,fechaIncripcion from cliente where (nombres like ?) and (apellidos like ?)";
 			pstm=conn.prepareCall(sql);
 			pstm.setString(1, "%"+nombre+"%");
 			pstm.setString(2, "%"+apellidos+"%");
@@ -62,7 +62,7 @@ private static final Logger log = Logger.getLogger(ClienteModel.class.getName())
 		ResultSet rs = null; //Trae la data de la BD
 		try {
 			con = MySqlDBConexion.getConexion();
-			String sql ="select idCliente,nombres,apellidos,sexo,dni,Direccion from cliente";
+			String sql ="select idCliente,nombres,apellidos,sexo,dni,Direccion,fechaIncripcion from cliente";
 			pstm = con.prepareStatement(sql);
 			log.info(">>> " + pstm);
 			
@@ -78,7 +78,7 @@ private static final Logger log = Logger.getLogger(ClienteModel.class.getName())
 				bean.setSexo(rs.getString(4));
 				bean.setDni(rs.getString(5));
 				bean.setDireccion(rs.getString(6));
-				
+				bean.setFechaI(rs.getDate(7));
 				
 				data.add(bean);
 
@@ -98,4 +98,39 @@ private static final Logger log = Logger.getLogger(ClienteModel.class.getName())
 	}
 	
 
+	public int insertaCliente(cliente obj) {
+		log.info(">>Inicio >> insertaCliente() ");
+		int salida=-1;
+		Connection conn=null;
+		PreparedStatement pstm=null;
+		
+		try {
+			conn=MySqlDBConexion.getConexion();
+			String sql = "insert into cliente values(null,?,?,?,?,?,curdate())";
+			pstm = conn.prepareStatement(sql);
+			pstm.setString(1, obj.getDni());
+			pstm.setString(2, obj.getNombres());
+			pstm.setString(3, obj.getApellidos());
+			pstm.setString(4, obj.getDireccion());
+			pstm.setString(5, obj.getSexo());
+			
+			
+			salida = pstm.executeUpdate();
+			log.info(">>SQL>> "+pstm);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstm !=null)pstm.close();
+				if (conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.getStackTrace();
+			}
+			
+		}
+
+		log.info(">>Fin >> insertaCliente() ");	
+		return salida;
+	}
 }

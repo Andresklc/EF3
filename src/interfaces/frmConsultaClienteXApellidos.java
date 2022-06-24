@@ -178,13 +178,18 @@ public class frmConsultaClienteXApellidos extends JDialog implements ActionListe
 
 
 		
-		System.out.println(idSeleccionado+" - "+nombre+" - "+nombre+" - "+apellido+" - "+DNI+" - "+direccion+" - "+sexo); 
+		System.out.println(idSeleccionado+" - "+nombre+" - "+apellido+" - "+DNI+" - "+direccion+" - "+sexo); 
+		
+
 		
 		frmInternalBoleta.txtCodigoCliente.setText(String.valueOf(idSeleccionado));
 		frmInternalBoleta.txtNombres.setText(nombre);
 		frmInternalBoleta.txtApellido.setText(apellido);
 		frmInternalBoleta.txtDireccion.setText(direccion);
-		frmInternalBoleta.txtSexo.setText(sexo);
+		if(sexo.equals("M")) {
+		frmInternalBoleta.rdbtnMasculino.setSelected(true);}
+		if(sexo.equals("F")) {
+		frmInternalBoleta.rdbtnFemenino.setSelected(true);}
 		frmInternalBoleta.txtDni.setText(DNI);
 
 

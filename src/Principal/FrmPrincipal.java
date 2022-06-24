@@ -22,6 +22,8 @@ import javax.swing.UIManager;
 import gui.frmConsultaArticulo;
 import gui.frmConsultaCliente;
 import gui.frmInternalBoleta;
+import gui.frmRegistroCliente;
+
 import java.awt.SystemColor;
 
 @SuppressWarnings("serial")
@@ -44,6 +46,8 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 	public frmConsultaCliente frmConsultaCliente = new frmConsultaCliente();
 	public frmConsultaArticulo frmConsultaArticulo = new frmConsultaArticulo();
 	public frmInternalBoleta frmInternalBoleta = new frmInternalBoleta();
+	public frmRegistroCliente frmRegistroCliente=new frmRegistroCliente();
+	private JMenuItem mntFormularioCliente;
 
 
 	// Formularios
@@ -82,7 +86,8 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 		JMenu mnFormularios = new JMenu("Formulario");
 		menuBar.add(mnFormularios);
 		
-		JMenuItem mntFormularioCliente = new JMenuItem("Inscripcion Cliente");
+		mntFormularioCliente = new JMenuItem("Inscripcion Cliente");
+		mntFormularioCliente.addActionListener(this);
 		mnFormularios.add(mntFormularioCliente);
 		
 		JMenuItem mntmActualizarCliente = new JMenuItem("Actualizar Cliente");
@@ -129,14 +134,14 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 		JMenuItem mntSalir = new JMenuItem("Salir");
 		mnSistema.add(mntSalir);
 		
-		frmConsultaCliente.setLocation(350, 234);
+		frmConsultaCliente.setLocation(137, 256);
 		frmConsultaCliente.setMaximizable(false);
 		
 		desktop.add(frmConsultaCliente);
 		
 		
 		frmInternalBoleta.setTitle("Generador de Boleta");
-		frmInternalBoleta.setLocation(350, 234);
+		frmInternalBoleta.setLocation(293, 79);
 		frmInternalBoleta.setMaximizable(false);
 		
 		desktop.add(frmInternalBoleta);
@@ -148,7 +153,9 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 		desktop.add(frmConsultaArticulo);
 		
 		
-
+		frmRegistroCliente.setMaximizable(false);
+		frmRegistroCliente.setLocation(350, 234);
+		desktop.add(frmRegistroCliente);
 			
 	}
 
@@ -195,6 +202,10 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
+		if (arg0.getSource() == mntFormularioCliente) {
+			centrar(frmRegistroCliente);
+			frmRegistroCliente.setVisible(true);
+		}
 		if (arg0.getSource() == mntCliente) {
 			centrar(frmConsultaCliente);
 			frmConsultaCliente.setVisible(true);
@@ -207,7 +218,6 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 			centrar(frmInternalBoleta);
 			frmInternalBoleta.setVisible(true);
 		}
-		//PC01 Registros
 	
 		
 	}
@@ -234,6 +244,10 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 	}
 	protected void actionPerformedMntClienteJMenuItem(ActionEvent arg0) {
 		frmConsultaCliente frm=new frmConsultaCliente();
+		frm.setVisible(true);
+	}
+	protected void actionPerformedMntFormularioClienteJMenuItem(ActionEvent arg0) {
+		frmRegistroCliente frm=new frmRegistroCliente();
 		frm.setVisible(true);
 	}
 }
