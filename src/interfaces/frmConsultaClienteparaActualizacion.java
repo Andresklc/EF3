@@ -16,14 +16,14 @@ import javax.swing.table.DefaultTableModel;
 
 import Entidad.cliente;
 import Model.ClienteModel;
-import gui.frmInternalBoleta;
+import gui.frmActualizarCliente;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 
 
-public class frmConsultaClienteXApellidos extends JDialog implements ActionListener {
+public class frmConsultaClienteparaActualizacion extends JDialog implements ActionListener {
 
 	/**
 	 * 
@@ -43,7 +43,7 @@ public class frmConsultaClienteXApellidos extends JDialog implements ActionListe
 	 */
 	public static void main(String[] args) {
 		try {
-			frmConsultaClienteXApellidos dialog = new frmConsultaClienteXApellidos();
+			frmConsultaClienteparaActualizacion dialog = new frmConsultaClienteparaActualizacion();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -54,7 +54,7 @@ public class frmConsultaClienteXApellidos extends JDialog implements ActionListe
 	/**
 	 * Create the dialog.
 	 */
-	public frmConsultaClienteXApellidos() {
+	public frmConsultaClienteparaActualizacion() {
 		setBounds(100, 100, 776, 354);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -181,15 +181,15 @@ public class frmConsultaClienteXApellidos extends JDialog implements ActionListe
 		System.out.println(idSeleccionado+" - "+nombre+" - "+apellido+" - "+DNI+" - "+direccion+" - "+sexo); 
 		
 
-		frmInternalBoleta.txtCodigoCliente.setText(String.valueOf(idSeleccionado));
-		frmInternalBoleta.txtNombres.setText(nombre);
-		frmInternalBoleta.txtApellido.setText(apellido);
-		frmInternalBoleta.txtDireccion.setText(direccion);
+		frmActualizarCliente.lblCodigo.setText(String.valueOf(idSeleccionado));
+		frmActualizarCliente.txtNombre.setText(nombre);
+		frmActualizarCliente.txtApellido.setText(apellido);
+		frmActualizarCliente.txtDireccion.setText(direccion);
 		if(sexo.equals("M")) {
-		frmInternalBoleta.rdbtnMasculino.setSelected(true);}
+			frmActualizarCliente.rdbtnMasculino.setSelected(true);}
 		if(sexo.equals("F")) {
-		frmInternalBoleta.rdbtnFemenino.setSelected(true);}
-		frmInternalBoleta.txtDni.setText(DNI);
+			frmActualizarCliente.rdbtnFemenino.setSelected(true);}
+		frmActualizarCliente.txtDni.setText(DNI);
 
 
 		 dispose();

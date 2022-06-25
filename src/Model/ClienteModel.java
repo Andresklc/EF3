@@ -96,8 +96,6 @@ private static final Logger log = Logger.getLogger(ClienteModel.class.getName())
 		}
 		return data;
 	}
-	
-
 	public int insertaCliente(cliente obj) {
 		log.info(">>Inicio >> insertaCliente() ");
 		int salida=-1;
@@ -133,4 +131,33 @@ private static final Logger log = Logger.getLogger(ClienteModel.class.getName())
 		log.info(">>Fin >> insertaCliente() ");	
 		return salida;
 	}
+
+public int actualizacliente(cliente c) {
+	int actualizados = -1;
+	Connection con = null;
+	PreparedStatement pstm = null;
+	try {
+		con = MySqlDBConexion.getConexion();
+		String sql = "update cliente set nombres=?, apellidos=?, dni=?, Direccion=?, sexo=? where idCliente=?"; 
+		pstm = con.prepareStatement(sql);
+		pstm.setString(1, c.getNombres());
+		pstm.setString(2, c.getApellidos());
+		pstm.setString(3, c.getDni());
+		pstm.setString(5, c.getDireccion());
+		pstm.setString(6, c.getSexo());
+		pstm.setInt(7, c.getCodigo());
+		log.info(">>> " + pstm);
+		actualizados = pstm.executeUpdate();
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		try {
+			if (pstm != null)pstm.close();
+			if (con != null)con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	return actualizados;
 }
+}	

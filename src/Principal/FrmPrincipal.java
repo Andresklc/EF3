@@ -19,6 +19,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import gui.frmActualizarCliente;
 import gui.frmConsultaArticulo;
 import gui.frmConsultaCliente;
 import gui.frmInternalBoleta;
@@ -48,7 +49,8 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 	public frmInternalBoleta frmInternalBoleta = new frmInternalBoleta();
 	public frmRegistroCliente frmRegistroCliente=new frmRegistroCliente();
 	private JMenuItem mntFormularioCliente;
-
+	private JMenuItem mntmActualizarCliente;
+	public frmActualizarCliente frmActualizarCliente=new frmActualizarCliente();
 
 	// Formularios
 	
@@ -90,7 +92,8 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 		mntFormularioCliente.addActionListener(this);
 		mnFormularios.add(mntFormularioCliente);
 		
-		JMenuItem mntmActualizarCliente = new JMenuItem("Actualizar Cliente");
+		mntmActualizarCliente = new JMenuItem("Actualizar Cliente");
+		mntmActualizarCliente.addActionListener(this);
 		mnFormularios.add(mntmActualizarCliente);
 		
 		JMenu mnCrud = new JMenu("Mantenimiento");
@@ -156,6 +159,10 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 		frmRegistroCliente.setMaximizable(false);
 		frmRegistroCliente.setLocation(350, 234);
 		desktop.add(frmRegistroCliente);
+		
+		frmActualizarCliente.setMaximizable(false);
+		frmActualizarCliente.setLocation(350, 234);
+		desktop.add(frmActualizarCliente);
 			
 	}
 
@@ -202,6 +209,10 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
+		if (arg0.getSource() == mntmActualizarCliente) {
+			centrar(frmActualizarCliente);
+			frmActualizarCliente.setVisible(true);
+		}
 		if (arg0.getSource() == mntFormularioCliente) {
 			centrar(frmRegistroCliente);
 			frmRegistroCliente.setVisible(true);
@@ -248,6 +259,10 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 	}
 	protected void actionPerformedMntFormularioClienteJMenuItem(ActionEvent arg0) {
 		frmRegistroCliente frm=new frmRegistroCliente();
+		frm.setVisible(true);
+	}
+	protected void actionPerformedMntmActualizarClienteJMenuItem(ActionEvent arg0) {
+		frmActualizarCliente frm=new frmActualizarCliente();
 		frm.setVisible(true);
 	}
 }
