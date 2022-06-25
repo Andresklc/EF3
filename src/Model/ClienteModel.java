@@ -160,4 +160,29 @@ public int actualizacliente(cliente c) {
 	}
 	return actualizados;
 }
+
+public int eliminaCliente(int idCliente) {
+	int eliminados = -1;
+	Connection con = null;
+	PreparedStatement pstm = null;
+
+	try {
+		con = MySqlDBConexion.getConexion();
+		String sql ="delete from cliente where idCliente=?";
+		pstm = con.prepareStatement(sql);
+		pstm.setInt(1, idCliente);
+		log.info(">>> " + pstm);
+		eliminados = pstm.executeUpdate();
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		try {
+			if (pstm != null)pstm.close();
+			if (con != null)con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	return eliminados;
+}
 }	

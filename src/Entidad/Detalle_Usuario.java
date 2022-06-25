@@ -3,6 +3,27 @@ package Entidad;
 public class Detalle_Usuario  {
 	
 
+	public int getIdRoll() {
+		return idRoll;
+	}
+	public void setIdRoll(int idRoll) {
+		this.idRoll = idRoll;
+	}
+	public String getLogin() {
+		return login;
+	}
+	public void setLogin(String login) {
+		this.login = login;
+	}
+	public String getContraseña() {
+		return contraseña;
+	}
+	public void setContraseña(String contraseña) {
+		this.contraseña = contraseña;
+	}
+	private int idRoll;
+	private String login;
+	private String contraseña;
 	private int idDUsuario;
 	private String dni,dirUsu,TelUsu,emailUsu;
 	public int getIdDUsuario() {

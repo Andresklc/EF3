@@ -64,7 +64,7 @@ public class FrmLogin extends JDialog implements ActionListener {
 						btnLimpiar.setBackground(SystemColor.activeCaption);
 						
 								lblLogin = new JLabel("Usuario");
-								lblLogin.setBounds(38, 32, 100, 25);
+								lblLogin.setBounds(38, 63, 100, 25);
 								panelLogin.add(lblLogin);
 								lblLogin.setFont(new Font("Tahoma", Font.BOLD, 12));
 								lblLogin.setForeground(Color.BLACK);
@@ -76,7 +76,7 @@ public class FrmLogin extends JDialog implements ActionListener {
 										txtLogin.setBackground(SystemColor.scrollbar);
 										
 												lblClave = new JLabel("Contrase\u00F1a:");
-												lblClave.setBounds(38, 91, 100, 25);
+												lblClave.setBounds(38, 120, 100, 25);
 												panelLogin.add(lblClave);
 												lblClave.setFont(new Font("Tahoma", Font.BOLD, 12));
 												lblClave.setForeground(Color.BLACK);

@@ -130,5 +130,48 @@ public class VentaModel {
 	
 	
 	}
-	
+	public List<Ventas> listaVentaid(int xc) {
+		ArrayList<Ventas> data = new ArrayList<Ventas>();
+		Connection con = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null; //Trae la data de la BD
+		try {
+			con = MySqlDBConexion.getConexion();
+			String sql ="select nomArticulo,Cantidad,importe FROM venta "
+					+ "join cliente on venta.idCliente=cliente.idCliente Join usuario "
+					+ "on venta.idUsuario=usuario.idUsuario join detalle_venta on detalle_venta.idVentas=venta.idVentas "
+					+ "join articulo on detalle_venta.idArticulo=articulo.idArticulo "
+					+ "where (venta.idCliente=?) and venta.fechaVenta=curdate() and (venta.idVentas=(SELECT max(idVentas) FROM venta))";
+			pstm = con.prepareStatement(sql);
+			pstm.setInt(1, xc);
+
+
+			log.info(">>> " + pstm);
+			
+			//En rs se trae los datos de la BD segun el SQL
+			rs = pstm.executeQuery();
+			
+			//Se pasa la data del rs al ArrayList(data)
+			while(rs.next()) {
+				Ventas bean=new Ventas();
+				bean.setArt(rs.getString(1));
+				bean.setCantida(rs.getInt(2));
+				bean.setMontoVen(rs.getDouble(3));
+		
+				data.add(bean);
+
+			}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstm != null)pstm.close();
+				if (con != null)con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return data;
+	}
 	}

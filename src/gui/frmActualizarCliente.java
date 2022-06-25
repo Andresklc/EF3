@@ -22,6 +22,7 @@ import interfaces.frmConsultaClienteparaActualizacion;
 
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
+
 import java.awt.event.ActionEvent;
 
 public class frmActualizarCliente extends JInternalFrame implements ActionListener {

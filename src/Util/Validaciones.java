@@ -21,7 +21,7 @@ public class Validaciones {
 	public static final String TEXTO_NUMERO = "[0-9a-zA-ZαινσϊρόΑΙΝΣΪΡά\\s]{2,40}";
 	public static final String NUMERO = "[0-9]{1,1000}";
 	public static final String SERIECRUDLIBRO= "[a-zA-ZαινσϊρόΑΙΝΣΪΡά\\s]{2,100}";
-	public static final String DIRECCION = "[a-zA-ZαινσϊρόΑΙΝΣΪΡά0-9\\s]{2,30}";
+	public static final String DIRECCION = "[a-zA-ZαινσϊρόΑΙΝΣΪΡά0-9\\s]{2,80}";
 }
 
 

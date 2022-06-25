@@ -19,6 +19,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import gui.CrudCliente;
+import gui.CrudUsuario;
 import gui.frmActualizarCliente;
 import gui.frmConsultaArticulo;
 import gui.frmConsultaCliente;
@@ -51,6 +53,10 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 	private JMenuItem mntFormularioCliente;
 	private JMenuItem mntmActualizarCliente;
 	public frmActualizarCliente frmActualizarCliente=new frmActualizarCliente();
+	public CrudCliente CrudCliente=new CrudCliente();
+	public CrudUsuario CrudUsuario=new CrudUsuario();
+	private JMenuItem mntCrudClientes;
+	private JMenuItem mntCrudUsuario;
 
 	// Formularios
 	
@@ -99,17 +105,15 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 		JMenu mnCrud = new JMenu("Mantenimiento");
 		menuBar.add(mnCrud);
 		
-		JMenuItem mntCrudArticulo = new JMenuItem("Articulos");
-		mnCrud.add(mntCrudArticulo);
-		
-		JMenuItem mntCrudCategoria = new JMenuItem("Categorias");
-		mnCrud.add(mntCrudCategoria);
-		
-		JMenuItem mntCrudUsuario = new JMenuItem("Usuarios");
+		mntCrudUsuario = new JMenuItem("Usuarios");
+		mntCrudUsuario.addActionListener(this);
 		mnCrud.add(mntCrudUsuario);
 		
-		JMenuItem mntCrudVentas = new JMenuItem("Ventas");
-		mnCrud.add(mntCrudVentas);
+		mntCrudClientes = new JMenuItem("Clientes");
+		mntCrudClientes.addActionListener(this);
+		mnCrud.add(mntCrudClientes);
+		
+		
 		
 		JMenu mnConsulta = new JMenu("Consulta");
 		menuBar.add(mnConsulta);
@@ -164,6 +168,14 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 		frmActualizarCliente.setLocation(350, 234);
 		desktop.add(frmActualizarCliente);
 			
+		
+		CrudCliente.setMaximizable(false);
+		CrudCliente.setLocation(350, 234);
+		desktop.add(CrudCliente);
+		
+		CrudUsuario.setMaximizable(false);
+		CrudUsuario.setLocation(350, 234);
+		desktop.add(CrudUsuario);
 	}
 
 	public static void main(String[] args) {
@@ -209,6 +221,15 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
+		if (arg0.getSource() == mntCrudUsuario) {
+			centrar(CrudUsuario);
+			CrudUsuario.setVisible(true);
+			
+		}
+		if (arg0.getSource() == mntCrudClientes) {
+			centrar(CrudCliente);
+			CrudCliente.setVisible(true);
+		}
 		if (arg0.getSource() == mntmActualizarCliente) {
 			centrar(frmActualizarCliente);
 			frmActualizarCliente.setVisible(true);
@@ -263,6 +284,14 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 	}
 	protected void actionPerformedMntmActualizarClienteJMenuItem(ActionEvent arg0) {
 		frmActualizarCliente frm=new frmActualizarCliente();
+		frm.setVisible(true);
+	}
+	protected void actionPerformedMntCrudClientesJMenuItem(ActionEvent arg0) {
+		CrudCliente frm=new CrudCliente();
+		frm.setVisible(true);
+	}
+	protected void actionPerformedMntCrudUsuarioJMenuItem(ActionEvent arg0) {
+		CrudUsuario frm=new CrudUsuario();
 		frm.setVisible(true);
 	}
 }

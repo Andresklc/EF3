@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.19.1.final using JasperReports Library version 6.19.1-867c00bf88cd4d784d404379d6c05e1b419e8a4c  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Simple_Blue" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5661edd6-3b9e-49c0-b6cf-51e5183bf753">
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="Articulo" class="java.lang.String"/>
+	<field name="Cantida" class="java.lang.Integer"/>
+	<field name="MontoVen" class="java.lang.Double"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="1e68f8ed-6a01-42be-8c15-f1a50fdc121b"/>
+				<staticText>
+					<reportElement x="20" y="20" width="320" height="43" forecolor="#FFFFFF" uuid="c7910f59-f547-4aa0-b8d9-855ab995d43d"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Boleta de pago]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="9417963c-85bd-47c8-b0be-a4b8b6a0e5af"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Venta de ropa por mayor]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="1c3d3a97-5442-4232-b5fa-6615a5b1629f"/>
+			</line>
+			<staticText>
+				<reportElement x="40" y="-1" width="150" height="21" uuid="110f620e-d8a0-45f4-96fe-14224d0b4d2c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38f6d951-3c09-4995-956d-8a06ed84bb1c"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Articulo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="190" y="0" width="150" height="21" uuid="6bf2f2b0-def0-4050-a37e-8b476a761392">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d9c54eab-fa21-4fb9-b5da-3677afa7abff"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="0" width="150" height="21" uuid="2bb388b0-6f99-4ef8-b7bc-bd4b8ec020a2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e6badde6-e850-42bb-888a-5113e69f7018"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Importe]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="42">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="d35961cf-759d-4436-958d-d9d156552d4a"/>
+			</line>
+			<textField>
+				<reportElement x="40" y="0" width="150" height="19" uuid="95c19764-0304-4de5-96e5-ec6ff11d1fdb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38f6d951-3c09-4995-956d-8a06ed84bb1c"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{Articulo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="0" width="150" height="19" uuid="2647a200-4f7e-4c4b-80d0-fda6387d67d1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d9c54eab-fa21-4fb9-b5da-3677afa7abff"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{Cantida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="-1" width="150" height="20" uuid="1c4c6e1e-0617-48d8-86c7-0da14e1487d6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e6badde6-e850-42bb-888a-5113e69f7018"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{MontoVen}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="d0b96987-7d5f-437c-a355-2f59e179ec97"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="82edd8b4-d7a4-410c-8701-23497d31ca72"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="c570e176-5e70-47d1-8a22-66b02b0a9e4c"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

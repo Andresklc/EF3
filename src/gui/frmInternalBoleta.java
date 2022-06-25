@@ -35,8 +35,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 
-
-
+import interfaces.BoletaImpresa;
 import interfaces.frmConsultaArticuloxnombre;
 import interfaces.frmConsultaClienteXApellidos;
 
@@ -93,6 +92,7 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener,
 	private JButton btnBoleta;
 	public static JLabel lbliDUsuario;
 	public static JLabel lblUsuario;
+	private JButton btnImprimirBoleta;
 	
 	
 
@@ -329,11 +329,8 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener,
 		lblUsuario.setBounds(702, 254, 36, 14);
 		contentPane.add(lblUsuario);
 		
-		JButton btnEliminarDeBoleta = new JButton("Eliminar de boleta");
-		btnEliminarDeBoleta.setBounds(236, 380, 184, 20);
-		contentPane.add(btnEliminarDeBoleta);
-		
-		JButton btnImprimirBoleta = new JButton("Imprimir Boleta");
+		btnImprimirBoleta = new JButton("Imprimir Boleta");
+		btnImprimirBoleta.addActionListener(this);
 		btnImprimirBoleta.setBounds(474, 380, 167, 20);
 		contentPane.add(btnImprimirBoleta);
 		
@@ -343,6 +340,9 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener,
 		JOptionPane.showMessageDialog(this, ms);
 	}
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnImprimirBoleta) {
+			actionPerformedBtnImprimirBoletaJButton(e);
+		}
 		if (e.getSource() == btnGrabar) {
 			actionPerformedBtnGrabarJButton(e);
 		}
@@ -518,5 +518,9 @@ public class frmInternalBoleta extends JInternalFrame implements ActionListener,
 			dtm.addRow(fila);
 		}
 		
+	}
+	protected void actionPerformedBtnImprimirBoletaJButton(ActionEvent e) {
+		BoletaImpresa frm=new BoletaImpresa();
+		frm.setVisible(true);
 	}
 }
