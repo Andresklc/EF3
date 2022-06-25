@@ -137,11 +137,7 @@ public class VentaModel {
 		ResultSet rs = null; //Trae la data de la BD
 		try {
 			con = MySqlDBConexion.getConexion();
-			String sql ="select nomArticulo,Cantidad,importe FROM venta "
-					+ "join cliente on venta.idCliente=cliente.idCliente Join usuario "
-					+ "on venta.idUsuario=usuario.idUsuario join detalle_venta on detalle_venta.idVentas=venta.idVentas "
-					+ "join articulo on detalle_venta.idArticulo=articulo.idArticulo "
-					+ "where (venta.idCliente=?) and venta.fechaVenta=curdate() and (venta.idVentas=(SELECT max(idVentas) FROM venta))";
+			String sql ="Select detalle_venta.idArticulo,detalle_venta.Cantidad,detalle_venta.importe from detalle_venta join venta on detalle_venta.idVentas=venta.idVentas where (venta.idCliente=?) and venta.fechaVenta=curdate() and (venta.idVentas=(SELECT max(idVentas) FROM venta))";
 			pstm = con.prepareStatement(sql);
 			pstm.setInt(1, xc);
 
@@ -154,7 +150,7 @@ public class VentaModel {
 			//Se pasa la data del rs al ArrayList(data)
 			while(rs.next()) {
 				Ventas bean=new Ventas();
-				bean.setArt(rs.getString(1));
+				bean.setCodArt(rs.getInt(1));
 				bean.setCantida(rs.getInt(2));
 				bean.setMontoVen(rs.getDouble(3));
 		

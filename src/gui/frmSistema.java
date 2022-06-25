@@ -6,16 +6,17 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JFrame;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import java.awt.Component;
-import java.awt.Point;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class frmSistema extends JInternalFrame implements ActionListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JButton btnSalir;
 
 	/**
@@ -53,6 +54,8 @@ public class frmSistema extends JInternalFrame implements ActionListener {
 		getContentPane().add(lblNewLabel);
 		
 		JTextArea txtrAplicacinHechaEn = new JTextArea();
+		txtrAplicacinHechaEn.setEnabled(false);
+		txtrAplicacinHechaEn.setEditable(false);
 		txtrAplicacinHechaEn.setFont(new Font("Monospaced", Font.PLAIN, 14));
 		txtrAplicacinHechaEn.setText("Aplicaci\u00F3n hecha en Java que permite organizar y agilizar el proceso \r\nde venta de productos de la tienda.Ademas esta aplicaci\u00F3n tiene \r\ncomo finalidad lograr que los pedidos de los productos se entreguen \r\nen los plazos fijados y en las cantidades solicitadas.\r\nPremite tener un seguimiento de los productos,su stock,precio y \r\ncalidad.En consecuencia, las ganancias por parte del usuario\r\naumentaran en un 100%.");
 		txtrAplicacinHechaEn.setBounds(10, 67, 545, 166);

@@ -9,6 +9,8 @@ public class Ventas {
 	private String nomcli;
 	private int CodUs;
 	private String nomU;
+	
+	private int CodArt;
 	private String Art;
 	private int cantida;
 	private Date fechVen;
@@ -17,7 +19,12 @@ public class Ventas {
 	
 	
 	
-
+	public int getCodArt() {
+		return CodArt;
+	}
+	public void setCodArt(int codArt) {
+		CodArt = codArt;
+	}
 	public int getCantida() {
 		return cantida;
 	}

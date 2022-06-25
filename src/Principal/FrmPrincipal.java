@@ -54,13 +54,12 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 	private JMenuItem mntFormularioCliente;
 	private JMenuItem mntmActualizarCliente;
 	public frmActualizarCliente frmActualizarCliente=new frmActualizarCliente();
-
+	public frmSistema frmSistema=new frmSistema();
 	public CrudCliente CrudCliente=new CrudCliente();
 	public CrudUsuario CrudUsuario=new CrudUsuario();
 	private JMenuItem mntCrudClientes;
 	private JMenuItem mntCrudUsuario;
 
-	public frmSistema frmsistema = new frmSistema();
 	private JMenuItem mntInfo;
 
 
@@ -145,17 +144,14 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 		mntInfo.addActionListener(this);
 		mnSistema.add(mntInfo);
 		
-		JMenuItem mntSalir = new JMenuItem("Salir");
-		mnSistema.add(mntSalir);
-		
-		frmConsultaCliente.setLocation(137, 256);
+		frmConsultaCliente.setLocation(111, 171);
 		frmConsultaCliente.setMaximizable(false);
 		
 		desktop.add(frmConsultaCliente);
 		
 		
 		frmInternalBoleta.setTitle("Generador de Boleta");
-		frmInternalBoleta.setLocation(293, 79);
+		frmInternalBoleta.setLocation(204, 54);
 		frmInternalBoleta.setMaximizable(false);
 		
 		desktop.add(frmInternalBoleta);
@@ -175,9 +171,11 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 		frmActualizarCliente.setLocation(350, 234);
 		desktop.add(frmActualizarCliente);
 		
-		desktop.add(frmsistema);
+		frmSistema.setMaximizable(false);
+		frmSistema.setLocation(350, 234);
+		desktop.add(frmSistema);
 			
-		
+
 		CrudCliente.setMaximizable(false);
 		CrudCliente.setLocation(350, 234);
 		desktop.add(CrudCliente);
@@ -239,9 +237,10 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 		if (arg0.getSource() == mntCrudClientes) {
 			centrar(CrudCliente);
 			CrudCliente.setVisible(true);
-
+		}
 		if (arg0.getSource() == mntInfo) {
-			actionPerformedMntInfoJMenuItem(arg0);
+			centrar(frmSistema);
+			frmSistema.setVisible(true);
 
 		}
 		if (arg0.getSource() == mntmActualizarCliente) {
@@ -264,10 +263,10 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 			centrar(frmInternalBoleta);
 			frmInternalBoleta.setVisible(true);
 		}
-		}
+	}
 	
 		
-	}
+	
 
 
 
@@ -312,7 +311,8 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 	}
 
 	protected void actionPerformedMntInfoJMenuItem(ActionEvent arg0) {
-		frmsistema.setVisible(true);
+		frmSistema frm=new frmSistema();
+		frm.setVisible(true);
 
 	}
 }
