@@ -22,7 +22,6 @@ import java.awt.Font;
 import javax.swing.JPanel;
 import java.awt.SystemColor;
 import javax.swing.ImageIcon;
-import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class FrmLogin extends JDialog implements ActionListener {
@@ -64,7 +63,7 @@ public class FrmLogin extends JDialog implements ActionListener {
 						panelLogin.add(btnLimpiar);
 						btnLimpiar.setBackground(SystemColor.activeCaption);
 						
-								lblLogin = new JLabel("Username:");
+								lblLogin = new JLabel("Usuario");
 								lblLogin.setBounds(38, 32, 100, 25);
 								panelLogin.add(lblLogin);
 								lblLogin.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -76,7 +75,7 @@ public class FrmLogin extends JDialog implements ActionListener {
 										panelLogin.add(txtLogin);
 										txtLogin.setBackground(SystemColor.scrollbar);
 										
-												lblClave = new JLabel("Password:");
+												lblClave = new JLabel("Contrase\u00F1a:");
 												lblClave.setBounds(38, 91, 100, 25);
 												panelLogin.add(lblClave);
 												lblClave.setFont(new Font("Tahoma", Font.BOLD, 12));
