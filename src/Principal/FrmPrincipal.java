@@ -24,6 +24,7 @@ import gui.frmConsultaArticulo;
 import gui.frmConsultaCliente;
 import gui.frmInternalBoleta;
 import gui.frmRegistroCliente;
+import gui.frmSistema;
 
 import java.awt.SystemColor;
 
@@ -51,6 +52,8 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 	private JMenuItem mntFormularioCliente;
 	private JMenuItem mntmActualizarCliente;
 	public frmActualizarCliente frmActualizarCliente=new frmActualizarCliente();
+	public frmSistema frmsistema = new frmSistema();
+	private JMenuItem mntInfo;
 
 	// Formularios
 	
@@ -131,7 +134,8 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 		JMenu mnSistema = new JMenu("Sistema");
 		menuBar.add(mnSistema);
 		
-		JMenuItem mntInfo = new JMenuItem("Informacion del Sistema");
+		mntInfo = new JMenuItem("Informacion del Sistema");
+		mntInfo.addActionListener(this);
 		mnSistema.add(mntInfo);
 		
 		JMenuItem mntSalir = new JMenuItem("Salir");
@@ -163,6 +167,8 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 		frmActualizarCliente.setMaximizable(false);
 		frmActualizarCliente.setLocation(350, 234);
 		desktop.add(frmActualizarCliente);
+		
+		desktop.add(frmsistema);
 			
 	}
 
@@ -209,6 +215,9 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
+		if (arg0.getSource() == mntInfo) {
+			actionPerformedMntInfoJMenuItem(arg0);
+		}
 		if (arg0.getSource() == mntmActualizarCliente) {
 			centrar(frmActualizarCliente);
 			frmActualizarCliente.setVisible(true);
@@ -264,5 +273,8 @@ public class FrmPrincipal extends JFrame implements WindowListener, ActionListen
 	protected void actionPerformedMntmActualizarClienteJMenuItem(ActionEvent arg0) {
 		frmActualizarCliente frm=new frmActualizarCliente();
 		frm.setVisible(true);
+	}
+	protected void actionPerformedMntInfoJMenuItem(ActionEvent arg0) {
+		frmsistema.setVisible(true);
 	}
 }
